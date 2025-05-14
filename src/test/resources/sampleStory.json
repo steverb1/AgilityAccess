@@ -1,0 +1,1847 @@
+[ {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Test:20969688:71650312",
+      "assetType" : "Test",
+      "displayName" : "L1 Validation",
+      "number" : "AT-623399",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-13T14:11:39.987Z",
+    "summary" : "Bob Bobber Updated Test 'L1 Validation'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "879a5c60-f95a-594c-bb04-66fa11ea3f98"
+    },
+    "target" : [ {
+      "name" : "Timebox",
+      "newValue" : {
+        "id" : "Timebox:20631248:70826535",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.2",
+        "assetState" : "Active"
+      },
+      "oldValue" : {
+        "id" : "Timebox:20631241:70826519",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.1",
+        "assetState" : "Active"
+      },
+      "verb" : "Set",
+      "summary" : "Timebox was Set to 'COM - REV - INV - CY25 - PI.03.2'"
+    } ],
+    "id" : "3c2af429-5134-5520-b991-271fbaa5437a"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Task:20969687:71650312",
+      "assetType" : "Task",
+      "displayName" : "Review 2",
+      "number" : "TK-4299360",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-13T14:11:39.987Z",
+    "summary" : "Bob Bobber Updated Task 'Review 2'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "f598c04c-9e07-5920-8b18-10a600ce3eb7"
+    },
+    "target" : [ {
+      "name" : "Timebox",
+      "newValue" : {
+        "id" : "Timebox:20631248:70826535",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.2",
+        "assetState" : "Active"
+      },
+      "oldValue" : {
+        "id" : "Timebox:20631241:70826519",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.1",
+        "assetState" : "Active"
+      },
+      "verb" : "Set",
+      "summary" : "Timebox was Set to 'COM - REV - INV - CY25 - PI.03.2'"
+    } ],
+    "id" : "684a88a9-59a0-532a-8acb-3bcc09643fa4"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Task:20969686:71650312",
+      "assetType" : "Task",
+      "displayName" : "Review 1",
+      "number" : "TK-4299359",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-13T14:11:39.987Z",
+    "summary" : "Bob Bobber Updated Task 'Review 1'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "30706d70-a274-5979-af3d-bfd0d9e81504"
+    },
+    "target" : [ {
+      "name" : "Timebox",
+      "newValue" : {
+        "id" : "Timebox:20631248:70826535",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.2",
+        "assetState" : "Active"
+      },
+      "oldValue" : {
+        "id" : "Timebox:20631241:70826519",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.1",
+        "assetState" : "Active"
+      },
+      "verb" : "Set",
+      "summary" : "Timebox was Set to 'COM - REV - INV - CY25 - PI.03.2'"
+    } ],
+    "id" : "d36f23bf-08d6-5306-8aef-5467c30a4566"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Task:20969685:71650312",
+      "assetType" : "Task",
+      "displayName" : "WPR Doc",
+      "number" : "TK-4299358",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-13T14:11:39.987Z",
+    "summary" : "Bob Bobber Updated Task 'WPR Doc'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "747fb75c-2515-57ce-9f69-03c1ee2ad713"
+    },
+    "target" : [ {
+      "name" : "Timebox",
+      "newValue" : {
+        "id" : "Timebox:20631248:70826535",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.2",
+        "assetState" : "Active"
+      },
+      "oldValue" : {
+        "id" : "Timebox:20631241:70826519",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.1",
+        "assetState" : "Active"
+      },
+      "verb" : "Set",
+      "summary" : "Timebox was Set to 'COM - REV - INV - CY25 - PI.03.2'"
+    } ],
+    "id" : "bfa0c6b6-afb6-56b3-b93d-d955b8876ef7"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Task:20969684:71650312",
+      "assetType" : "Task",
+      "displayName" : "Code & UT",
+      "number" : "TK-4299357",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-13T14:11:39.987Z",
+    "summary" : "Bob Bobber Updated Task 'Code & UT'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "70e6fab6-2d2d-518c-878b-ddbde79d1f35"
+    },
+    "target" : [ {
+      "name" : "Timebox",
+      "newValue" : {
+        "id" : "Timebox:20631248:70826535",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.2",
+        "assetState" : "Active"
+      },
+      "oldValue" : {
+        "id" : "Timebox:20631241:70826519",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.1",
+        "assetState" : "Active"
+      },
+      "verb" : "Set",
+      "summary" : "Timebox was Set to 'COM - REV - INV - CY25 - PI.03.2'"
+    } ],
+    "id" : "ebeb20f4-1921-57a2-80dc-69e099b55c7c"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Story:20723163:71650312",
+      "assetType" : "Story",
+      "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+      "number" : "B-244591",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-13T14:11:39.987Z",
+    "summary" : "Bob Bobber Updated Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "d61b4dff-a378-5fbb-9718-0f9e3aa48d54"
+    },
+    "target" : [ {
+      "name" : "Timebox",
+      "newValue" : {
+        "id" : "Timebox:20631248:70826535",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.2",
+        "assetState" : "Active"
+      },
+      "oldValue" : {
+        "id" : "Timebox:20631241:70826519",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.1",
+        "assetState" : "Active"
+      },
+      "verb" : "Set",
+      "summary" : "Timebox was Set to 'COM - REV - INV - CY25 - PI.03.2'"
+    } ],
+    "id" : "b316b84d-2427-5c56-944a-2142bea22275"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Story:20723163:71641280",
+      "assetType" : "Story",
+      "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+      "number" : "B-244591",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-06T13:24:53.343Z",
+    "summary" : "Bob Bobber Updated Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "e05c62c7-d5f6-57d8-a28c-08a6914b6b0d"
+    },
+    "target" : [ {
+      "name" : "Status",
+      "newValue" : "Ready for Build",
+      "oldValue" : "Build",
+      "verb" : "Set",
+      "summary" : "Status was Set to 'Ready for Build'"
+    } ],
+    "id" : "de86c24d-443b-5b5a-b283-92cb014d1bc6"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:56982",
+      "assetType" : "Member",
+      "displayName" : "Susie Sue",
+      "username" : "susie",
+      "email" : "susie@sue.com",
+      "avatar" : "Image:1132376"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Task:20969684:71411559",
+      "assetType" : "Task",
+      "displayName" : "Code & UT",
+      "number" : "TK-4299357",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-07T18:36:49.207Z",
+    "summary" : "Susie Sue Updated Task 'Code & UT'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "fba24449-6378-5f9f-a36e-5096e8b86ead"
+    },
+    "target" : [ {
+      "name" : "ToDo",
+      "newValue" : "6.00",
+      "oldValue" : "10.00",
+      "verb" : "Set",
+      "summary" : "ToDo was Set to '6.00'"
+    }, {
+      "name" : "Status",
+      "newValue" : "In Progress",
+      "oldValue" : "",
+      "verb" : "Set",
+      "summary" : "Status was Set to 'In Progress'"
+    } ],
+    "id" : "12fd4d67-659a-5164-a41e-be52bf5b4d12"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:569825",
+      "assetType" : "Member",
+      "displayName" : "Susie Sue",
+      "username" : "susie",
+      "email" : "susie@sue.com",
+      "avatar" : "Image:1132376"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Story:20723163:71411557",
+      "assetType" : "Story",
+      "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+      "number" : "B-244591",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-07T18:36:49.183Z",
+    "summary" : "Susie Sue Updated Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "456b8b1b-8ae1-548e-b803-20684a7de688"
+    },
+    "target" : [ {
+      "name" : "Status",
+      "newValue" : "Build",
+      "oldValue" : "Ready for Build",
+      "verb" : "Set",
+      "summary" : "Status was Set to 'Build'"
+    } ],
+    "id" : "85962409-cd43-5689-9e10-cb947582890a"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Story:20723163:71311602",
+      "assetType" : "Story",
+      "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+      "number" : "B-244591",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-13T13:42:06.743Z",
+    "summary" : "Bob Bobber Updated Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "3279761e-af59-59a5-8441-91319bf33903"
+    },
+    "target" : [ {
+      "name" : "Status",
+      "newValue" : "Ready for Build",
+      "oldValue" : "Build",
+      "verb" : "Set",
+      "summary" : "Status was Set to 'Ready for Build'"
+    } ],
+    "id" : "f939bf77-4d04-5f73-93df-8bed0b2a8a1e"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Story:20723163:71310667",
+      "assetType" : "Story",
+      "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+      "number" : "B-244591",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-06T13:35:00.457Z",
+    "summary" : "Bob Bobber Updated Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "9c65f669-0692-5733-abad-8fc59ebf0371"
+    },
+    "target" : [ {
+      "name" : "TaggedWith",
+      "newValue" : "Demo",
+      "oldValue" : null,
+      "verb" : "Added",
+      "summary" : "Added Demo to TaggedWith"
+    } ],
+    "id" : "9ec26556-ebc7-570e-b4d1-aec1c2901a98"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Story:20723163:71310017",
+      "assetType" : "Story",
+      "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+      "number" : "B-244591",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-06T13:29:53.007Z",
+    "summary" : "Bob Bobber Updated Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "68a9c223-e51e-540d-b172-2ec0c4aa1616"
+    },
+    "target" : [ {
+      "name" : "Status",
+      "newValue" : "Build",
+      "oldValue" : "Ready for Build",
+      "verb" : "Set",
+      "summary" : "Status was Set to 'Build'"
+    } ],
+    "id" : "b82521f2-8f24-5bd1-981e-f24cd3296290"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Task:20969684:71278735",
+      "assetType" : "Task",
+      "displayName" : "Code & UT",
+      "number" : "TK-4299357",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-05T20:49:24.673Z",
+    "summary" : "Bob Bobber Updated Task 'Code & UT'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "118983a0-5df8-5067-b4d2-7c490e7b0459"
+    },
+    "target" : [ {
+      "name" : "Owners",
+      "newValue" : {
+        "id" : "Member:569825:2750085",
+        "assetType" : "Member",
+        "displayName" : "Susie Sue",
+        "username" : "susie",
+        "email" : "susie@sue.com",
+        "avatar" : "Image:1132376:2750083"
+      },
+      "oldValue" : null,
+      "verb" : "Added",
+      "summary" : "Added Susie Sue to Owners"
+    } ],
+    "id" : "211c1504-e0d9-56ba-af8d-ec85a9ada556"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Task:20969686:71278734",
+      "assetType" : "Task",
+      "displayName" : "Review 1",
+      "number" : "TK-4299359",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-05T20:49:24.667Z",
+    "summary" : "Bob Bobber Updated Task 'Review 1'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "3548d18f-f544-599c-abc8-608c62a45304"
+    },
+    "target" : [ {
+      "name" : "Owners",
+      "newValue" : {
+        "id" : "Member:707460:1558064",
+        "assetType" : "Member",
+        "displayName" : "John Doe",
+        "username" : "john",
+        "email" : "john@doe.com",
+        "avatar" : "NULL"
+      },
+      "oldValue" : null,
+      "verb" : "Added",
+      "summary" : "Added John Doe to Owners"
+    } ],
+    "id" : "996f2520-306e-54e3-8de2-796c50ed5145"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Task:20969687:71278733",
+      "assetType" : "Task",
+      "displayName" : "Review 2",
+      "number" : "TK-4299360",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-05T20:49:24.657Z",
+    "summary" : "Bob Bobber Updated Task 'Review 2'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "37770dd2-fcaa-5641-89fd-d827ab7de52c"
+    },
+    "target" : [ {
+      "name" : "Owners",
+      "newValue" : {
+        "id" : "Member:5648577:19339230",
+        "assetType" : "Member",
+        "displayName" : "Bob Dylan",
+        "username" : "bob",
+        "email" : "bob@dylan.com",
+        "avatar" : "NULL"
+      },
+      "oldValue" : null,
+      "verb" : "Added",
+      "summary" : "Added Bob Dylan to Owners"
+    } ],
+    "id" : "6e7eb1e3-4787-5266-a032-f733167820ef"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Task:20969685:71278732",
+      "assetType" : "Task",
+      "displayName" : "WPR Doc",
+      "number" : "TK-4299358",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-05T20:49:24.65Z",
+    "summary" : "Bob Bobber Updated Task 'WPR Doc'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "aa9a0c1b-1751-55d4-856b-2a36ed394f04"
+    },
+    "target" : [ {
+      "name" : "Owners",
+      "newValue" : {
+        "id" : "Member:569825:2750085",
+        "assetType" : "Member",
+        "displayName" : "Susie Sue",
+        "username" : "susie",
+        "email" : "susie@sue.com",
+        "avatar" : "Image:1132376:2750083"
+      },
+      "oldValue" : null,
+      "verb" : "Added",
+      "summary" : "Added Susie Sue to Owners"
+    } ],
+    "id" : "e73519f2-0667-5a17-9e0e-18f98db73eac"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Created",
+    "object" : {
+      "id" : "Test:20969688:71278701",
+      "assetType" : "Test",
+      "displayName" : "L1 Validation",
+      "number" : "AT-623399",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-05T20:48:42.473Z",
+    "summary" : "Bob Bobber Created Test 'L1 Validation'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "941d2c5f-4965-5027-a1c4-1a53b7be2c38"
+    },
+    "target" : [ {
+      "name" : "AssetType",
+      "newValue" : "Test",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "AssetType was Set to 'Test'"
+    }, {
+      "name" : "Number",
+      "newValue" : "AT-623399",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Number was Set to 'AT-623399'"
+    }, {
+      "name" : "VersionTested",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "VersionTested was Set to ''"
+    }, {
+      "name" : "ActualResults",
+      "verb" : "SetLongValue",
+      "summary" : "ActualResults was Set to a new value"
+    }, {
+      "name" : "ExpectedResults",
+      "verb" : "SetLongValue",
+      "summary" : "ExpectedResults was Set to a new value"
+    }, {
+      "name" : "Steps",
+      "verb" : "SetLongValue",
+      "summary" : "Steps was Set to a new value"
+    }, {
+      "name" : "Inputs",
+      "verb" : "SetLongValue",
+      "summary" : "Inputs was Set to a new value"
+    }, {
+      "name" : "Setup",
+      "verb" : "SetLongValue",
+      "summary" : "Setup was Set to a new value"
+    }, {
+      "name" : "Order",
+      "newValue" : "5143620",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Order was Set to '5143620'"
+    }, {
+      "name" : "Estimate",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Estimate was Set to ''"
+    }, {
+      "name" : "ToDo",
+      "newValue" : "2.00",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "ToDo was Set to '2.00'"
+    }, {
+      "name" : "DetailEstimate",
+      "newValue" : "2.00",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "DetailEstimate was Set to '2.00'"
+    }, {
+      "name" : "Description",
+      "verb" : "SetLongValue",
+      "summary" : "Description was Set to a new value"
+    }, {
+      "name" : "Name",
+      "newValue" : "L1 Validation",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Name was Set to 'L1 Validation'"
+    }, {
+      "name" : "AssetState",
+      "newValue" : "Active",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "AssetState was Set to 'Active'"
+    }, {
+      "name" : "Owners",
+      "newValue" : {
+        "id" : "Member:569825:2750085",
+        "assetType" : "Member",
+        "displayName" : "Susie Sue",
+        "username" : "susie",
+        "email" : "susie@sue.com",
+        "avatar" : "Image:1132376:2750083"
+      },
+      "oldValue" : null,
+      "verb" : "Added",
+      "summary" : "Added Susie Sue to Owners"
+    }, {
+      "name" : "Category",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Category was Set to ''"
+    }, {
+      "name" : "GeneratedFrom",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "GeneratedFrom was Set to ''"
+    }, {
+      "name" : "Parent",
+      "newValue" : {
+        "id" : "Story:207231:712669",
+        "assetType" : "Story",
+        "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+        "number" : "B-244591",
+        "assetState" : "Active",
+        "scope" : "Scope:19183469:66275001",
+        "colorName" : null,
+        "team" : "Team:7074:624233"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Parent was Set to 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'"
+    }, {
+      "name" : "Scope",
+      "newValue" : {
+        "id" : "Scope:19183469:66275001",
+        "assetType" : "Scope",
+        "displayName" : "COM - REV - INV - CY25 - PI.03",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Scope was Set to 'COM - REV - INV - CY25 - PI.03'"
+    }, {
+      "name" : "SecurityScope",
+      "newValue" : {
+        "id" : "Scope:19183469:66275001",
+        "assetType" : "Scope",
+        "displayName" : "COM - REV - INV - CY25 - PI.03",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "SecurityScope was Set to 'COM - REV - INV - CY25 - PI.03'"
+    }, {
+      "name" : "Status",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Status was Set to ''"
+    }, {
+      "name" : "Super",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Super was Set to ''"
+    }, {
+      "name" : "Team",
+      "newValue" : {
+        "id" : "Team:7074:624233",
+        "assetType" : "Team",
+        "displayName" : "COM - REV - INV - Team Awesome",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Team was Set to 'COM - REV - INV - Team Awesome'"
+    }, {
+      "name" : "Timebox",
+      "newValue" : {
+        "id" : "Timebox:20631241:70826519",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.1",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Timebox was Set to 'COM - REV - INV - CY25 - PI.03.1'"
+    }, {
+      "name" : "Reference",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Reference was Set to ''"
+    } ],
+    "id" : "4732a3ca-6463-5bdb-adac-e9007ab605cc"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Created",
+    "object" : {
+      "id" : "Task:20969687:71278698",
+      "assetType" : "Task",
+      "displayName" : "Review 2",
+      "number" : "TK-4299360",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-05T20:48:26.627Z",
+    "summary" : "Bob Bobber Created Task 'Review 2'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "96f1b5ee-7257-57f0-9fa2-78c0f198a32b"
+    },
+    "target" : [ {
+      "name" : "AssetType",
+      "newValue" : "Task",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "AssetType was Set to 'Task'"
+    }, {
+      "name" : "Number",
+      "newValue" : "TK-4299360",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Number was Set to 'TK-4299360'"
+    }, {
+      "name" : "Order",
+      "newValue" : "54356826",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Order was Set to '54356826'"
+    }, {
+      "name" : "Estimate",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Estimate was Set to ''"
+    }, {
+      "name" : "ToDo",
+      "newValue" : "1.00",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "ToDo was Set to '1.00'"
+    }, {
+      "name" : "DetailEstimate",
+      "newValue" : "1.00",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "DetailEstimate was Set to '1.00'"
+    }, {
+      "name" : "Description",
+      "verb" : "SetLongValue",
+      "summary" : "Description was Set to a new value"
+    }, {
+      "name" : "Name",
+      "newValue" : "Review 2",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Name was Set to 'Review 2'"
+    }, {
+      "name" : "AssetState",
+      "newValue" : "Active",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "AssetState was Set to 'Active'"
+    }, {
+      "name" : "Category",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Category was Set to ''"
+    }, {
+      "name" : "Customer",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Customer was Set to ''"
+    }, {
+      "name" : "Parent",
+      "newValue" : {
+        "id" : "Story:207231:712669",
+        "assetType" : "Story",
+        "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+        "number" : "B-244591",
+        "assetState" : "Active",
+        "scope" : "Scope:19183469:66275001",
+        "colorName" : null,
+        "team" : "Team:7074:624233"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Parent was Set to 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'"
+    }, {
+      "name" : "Scope",
+      "newValue" : {
+        "id" : "Scope:19183469:66275001",
+        "assetType" : "Scope",
+        "displayName" : "COM - REV - INV - CY25 - PI.03",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Scope was Set to 'COM - REV - INV - CY25 - PI.03'"
+    }, {
+      "name" : "SecurityScope",
+      "newValue" : {
+        "id" : "Scope:19183469:66275001",
+        "assetType" : "Scope",
+        "displayName" : "COM - REV - INV - CY25 - PI.03",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "SecurityScope was Set to 'COM - REV - INV - CY25 - PI.03'"
+    }, {
+      "name" : "Source",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Source was Set to ''"
+    }, {
+      "name" : "Status",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Status was Set to ''"
+    }, {
+      "name" : "Super",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Super was Set to ''"
+    }, {
+      "name" : "Team",
+      "newValue" : {
+        "id" : "Team:7074:624233",
+        "assetType" : "Team",
+        "displayName" : "COM - REV - INV - Team Awesome",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Team was Set to 'COM - REV - INV - Team Awesome'"
+    }, {
+      "name" : "Timebox",
+      "newValue" : {
+        "id" : "Timebox:20631241:70826519",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.1",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Timebox was Set to 'COM - REV - INV - CY25 - PI.03.1'"
+    }, {
+      "name" : "LastVersion",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "LastVersion was Set to ''"
+    }, {
+      "name" : "Reference",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Reference was Set to ''"
+    } ],
+    "id" : "a03334eb-51df-513b-87a4-9d9087982a70"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Created",
+    "object" : {
+      "id" : "Task:20969686:71278697",
+      "assetType" : "Task",
+      "displayName" : "Review 1",
+      "number" : "TK-4299359",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-05T20:48:26.567Z",
+    "summary" : "Bob Bobber Created Task 'Review 1'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "d8e8cb93-57b1-53db-9745-53e438b47bca"
+    },
+    "target" : [ {
+      "name" : "AssetType",
+      "newValue" : "Task",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "AssetType was Set to 'Task'"
+    }, {
+      "name" : "Number",
+      "newValue" : "TK-4299359",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Number was Set to 'TK-4299359'"
+    }, {
+      "name" : "Order",
+      "newValue" : "54356565",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Order was Set to '54356565'"
+    }, {
+      "name" : "Estimate",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Estimate was Set to ''"
+    }, {
+      "name" : "ToDo",
+      "newValue" : "1.00",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "ToDo was Set to '1.00'"
+    }, {
+      "name" : "DetailEstimate",
+      "newValue" : "1.00",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "DetailEstimate was Set to '1.00'"
+    }, {
+      "name" : "Description",
+      "verb" : "SetLongValue",
+      "summary" : "Description was Set to a new value"
+    }, {
+      "name" : "Name",
+      "newValue" : "Review 1",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Name was Set to 'Review 1'"
+    }, {
+      "name" : "AssetState",
+      "newValue" : "Active",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "AssetState was Set to 'Active'"
+    }, {
+      "name" : "Category",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Category was Set to ''"
+    }, {
+      "name" : "Customer",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Customer was Set to ''"
+    }, {
+      "name" : "Parent",
+      "newValue" : {
+        "id" : "Story:207231:712669",
+        "assetType" : "Story",
+        "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+        "number" : "B-244591",
+        "assetState" : "Active",
+        "scope" : "Scope:19183469:66275001",
+        "colorName" : null,
+        "team" : "Team:7074:624233"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Parent was Set to 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'"
+    }, {
+      "name" : "Scope",
+      "newValue" : {
+        "id" : "Scope:19183469:66275001",
+        "assetType" : "Scope",
+        "displayName" : "COM - REV - INV - CY25 - PI.03",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Scope was Set to 'COM - REV - INV - CY25 - PI.03'"
+    }, {
+      "name" : "SecurityScope",
+      "newValue" : {
+        "id" : "Scope:19183469:66275001",
+        "assetType" : "Scope",
+        "displayName" : "COM - REV - INV - CY25 - PI.03",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "SecurityScope was Set to 'COM - REV - INV - CY25 - PI.03'"
+    }, {
+      "name" : "Source",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Source was Set to ''"
+    }, {
+      "name" : "Status",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Status was Set to ''"
+    }, {
+      "name" : "Super",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Super was Set to ''"
+    }, {
+      "name" : "Team",
+      "newValue" : {
+        "id" : "Team:7074:624233",
+        "assetType" : "Team",
+        "displayName" : "COM - REV - INV - Team Awesome",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Team was Set to 'COM - REV - INV - Team Awesome'"
+    }, {
+      "name" : "Timebox",
+      "newValue" : {
+        "id" : "Timebox:20631241:70826519",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.1",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Timebox was Set to 'COM - REV - INV - CY25 - PI.03.1'"
+    }, {
+      "name" : "LastVersion",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "LastVersion was Set to ''"
+    }, {
+      "name" : "Reference",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Reference was Set to ''"
+    } ],
+    "id" : "3a5e3ea8-aacb-5bf9-b5f3-2a5701a5a161"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Created",
+    "object" : {
+      "id" : "Task:20969685:71278696",
+      "assetType" : "Task",
+      "displayName" : "WPR Doc",
+      "number" : "TK-4299358",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-05T20:48:26.533Z",
+    "summary" : "Bob Bobber Created Task 'WPR Doc'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "a6d84227-82aa-593d-83f4-dcd02645bcd8"
+    },
+    "target" : [ {
+      "name" : "AssetType",
+      "newValue" : "Task",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "AssetType was Set to 'Task'"
+    }, {
+      "name" : "Number",
+      "newValue" : "TK-4299358",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Number was Set to 'TK-4299358'"
+    }, {
+      "name" : "Order",
+      "newValue" : "54356232",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Order was Set to '54356232'"
+    }, {
+      "name" : "Estimate",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Estimate was Set to ''"
+    }, {
+      "name" : "ToDo",
+      "newValue" : "1.00",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "ToDo was Set to '1.00'"
+    }, {
+      "name" : "DetailEstimate",
+      "newValue" : "1.00",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "DetailEstimate was Set to '1.00'"
+    }, {
+      "name" : "Description",
+      "verb" : "SetLongValue",
+      "summary" : "Description was Set to a new value"
+    }, {
+      "name" : "Name",
+      "newValue" : "WPR Doc",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Name was Set to 'WPR Doc'"
+    }, {
+      "name" : "AssetState",
+      "newValue" : "Active",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "AssetState was Set to 'Active'"
+    }, {
+      "name" : "Category",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Category was Set to ''"
+    }, {
+      "name" : "Customer",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Customer was Set to ''"
+    }, {
+      "name" : "Parent",
+      "newValue" : {
+        "id" : "Story:207231:712669",
+        "assetType" : "Story",
+        "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+        "number" : "B-244591",
+        "assetState" : "Active",
+        "scope" : "Scope:19183469:66275001",
+        "colorName" : null,
+        "team" : "Team:7074:624233"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Parent was Set to 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'"
+    }, {
+      "name" : "Scope",
+      "newValue" : {
+        "id" : "Scope:19183469:66275001",
+        "assetType" : "Scope",
+        "displayName" : "COM - REV - INV - CY25 - PI.03",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Scope was Set to 'COM - REV - INV - CY25 - PI.03'"
+    }, {
+      "name" : "SecurityScope",
+      "newValue" : {
+        "id" : "Scope:19183469:66275001",
+        "assetType" : "Scope",
+        "displayName" : "COM - REV - INV - CY25 - PI.03",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "SecurityScope was Set to 'COM - REV - INV - CY25 - PI.03'"
+    }, {
+      "name" : "Source",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Source was Set to ''"
+    }, {
+      "name" : "Status",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Status was Set to ''"
+    }, {
+      "name" : "Super",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Super was Set to ''"
+    }, {
+      "name" : "Team",
+      "newValue" : {
+        "id" : "Team:7074:624233",
+        "assetType" : "Team",
+        "displayName" : "COM - REV - INV - Team Awesome",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Team was Set to 'COM - REV - INV - Team Awesome'"
+    }, {
+      "name" : "Timebox",
+      "newValue" : {
+        "id" : "Timebox:20631241:70826519",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.1",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Timebox was Set to 'COM - REV - INV - CY25 - PI.03.1'"
+    }, {
+      "name" : "LastVersion",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "LastVersion was Set to ''"
+    }, {
+      "name" : "Reference",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Reference was Set to ''"
+    } ],
+    "id" : "79c794c8-2451-583c-8b6b-962bc5cced63"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Created",
+    "object" : {
+      "id" : "Task:20969684:71278695",
+      "assetType" : "Task",
+      "displayName" : "Code & UT",
+      "number" : "TK-4299357",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-05T20:48:26.517Z",
+    "summary" : "Bob Bobber Created Task 'Code & UT'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "51683d1f-12e3-5f1d-8e88-16441b59e653"
+    },
+    "target" : [ {
+      "name" : "AssetType",
+      "newValue" : "Task",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "AssetType was Set to 'Task'"
+    }, {
+      "name" : "Number",
+      "newValue" : "TK-4299357",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Number was Set to 'TK-4299357'"
+    }, {
+      "name" : "Order",
+      "newValue" : "54355793",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Order was Set to '54355793'"
+    }, {
+      "name" : "Estimate",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Estimate was Set to ''"
+    }, {
+      "name" : "ToDo",
+      "newValue" : "10.00",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "ToDo was Set to '10.00'"
+    }, {
+      "name" : "DetailEstimate",
+      "newValue" : "10.00",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "DetailEstimate was Set to '10.00'"
+    }, {
+      "name" : "Description",
+      "verb" : "SetLongValue",
+      "summary" : "Description was Set to a new value"
+    }, {
+      "name" : "Name",
+      "newValue" : "Code & UT",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Name was Set to 'Code & UT'"
+    }, {
+      "name" : "AssetState",
+      "newValue" : "Active",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "AssetState was Set to 'Active'"
+    }, {
+      "name" : "Category",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Category was Set to ''"
+    }, {
+      "name" : "Customer",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Customer was Set to ''"
+    }, {
+      "name" : "Parent",
+      "newValue" : {
+        "id" : "Story:207231:712669",
+        "assetType" : "Story",
+        "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+        "number" : "B-244591",
+        "assetState" : "Active",
+        "scope" : "Scope:19183469:66275001",
+        "colorName" : null,
+        "team" : "Team:7074:624233"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Parent was Set to 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'"
+    }, {
+      "name" : "Scope",
+      "newValue" : {
+        "id" : "Scope:19183469:66275001",
+        "assetType" : "Scope",
+        "displayName" : "COM - REV - INV - CY25 - PI.03",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Scope was Set to 'COM - REV - INV - CY25 - PI.03'"
+    }, {
+      "name" : "SecurityScope",
+      "newValue" : {
+        "id" : "Scope:19183469:66275001",
+        "assetType" : "Scope",
+        "displayName" : "COM - REV - INV - CY25 - PI.03",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "SecurityScope was Set to 'COM - REV - INV - CY25 - PI.03'"
+    }, {
+      "name" : "Source",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Source was Set to ''"
+    }, {
+      "name" : "Status",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Status was Set to ''"
+    }, {
+      "name" : "Super",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Super was Set to ''"
+    }, {
+      "name" : "Team",
+      "newValue" : {
+        "id" : "Team:7074:624233",
+        "assetType" : "Team",
+        "displayName" : "COM - REV - INV - Team Awesome",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Team was Set to 'COM - REV - INV - Team Awesome'"
+    }, {
+      "name" : "Timebox",
+      "newValue" : {
+        "id" : "Timebox:20631241:70826519",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.1",
+        "assetState" : "Active"
+      },
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Timebox was Set to 'COM - REV - INV - CY25 - PI.03.1'"
+    }, {
+      "name" : "LastVersion",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "LastVersion was Set to ''"
+    }, {
+      "name" : "Reference",
+      "newValue" : "",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Reference was Set to ''"
+    } ],
+    "id" : "a2a70d72-4706-591d-83d7-a2d4e9a2cdd9"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:707413",
+      "assetType" : "Member",
+      "displayName" : "Srini Put",
+      "username" : "srini",
+      "email" : "srini@put.com",
+      "avatar" : "NULL"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Story:207231:712669",
+      "assetType" : "Story",
+      "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+      "number" : "B-244591",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-05-05T15:40:36.377Z",
+    "summary" : "Srini Put Updated Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "b609b4d6-6fab-5f69-a7ef-7618b45c825e"
+    },
+    "target" : [ {
+      "name" : "Owners",
+      "newValue" : {
+        "id" : "Member:569825:2750085",
+        "assetType" : "Member",
+        "displayName" : "Susie Sue",
+        "username" : "susie",
+        "email" : "susie@sue.com",
+        "avatar" : "Image:1132376:2750083"
+      },
+      "oldValue" : null,
+      "verb" : "Added",
+      "summary" : "Added Susie Sue to Owners"
+    }, {
+      "name" : "Owners",
+      "newValue" : {
+        "id" : "Member:707460:1558064",
+        "assetType" : "Member",
+        "displayName" : "John Doe",
+        "username" : "john",
+        "email" : "john@doe.com",
+        "avatar" : "NULL"
+      },
+      "oldValue" : null,
+      "verb" : "Removed",
+      "summary" : "Removed John Doe from Owners"
+    }, {
+      "name" : "Owners",
+      "newValue" : {
+        "id" : "Member:2064595:5854078",
+        "assetType" : "Member",
+        "displayName" : "Never Sung",
+        "username" : "never",
+        "email" : "never@sung.com",
+        "avatar" : "NULL"
+      },
+      "oldValue" : null,
+      "verb" : "Removed",
+      "summary" : "Removed Never Sung from Owners"
+    } ],
+    "id" : "a81c4abb-3ed7-529d-ab4d-c5fbb6dc8728"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Story:20723163:70822442",
+      "assetType" : "Story",
+      "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+      "number" : "B-244591",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-04-23T18:05:27.563Z",
+    "summary" : "Bob Bobber Updated Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "a8bd1537-ee9f-56ce-baba-bf62839bcc10"
+    },
+    "target" : [ {
+      "name" : "Timebox",
+      "newValue" : {
+        "id" : "Timebox:20631241:70340902",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.03.1",
+        "assetState" : "Future"
+      },
+      "oldValue" : "",
+      "verb" : "Set",
+      "summary" : "Timebox was Set to 'COM - REV - INV - CY25 - PI.03.1'"
+    } ],
+    "id" : "b385e3ac-2032-558a-bc78-a11ae3c8b640"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Moved",
+    "object" : {
+      "id" : "Story:20723163:70749735",
+      "assetType" : "Story",
+      "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+      "number" : "B-244591",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-04-22T15:32:22.6Z",
+    "summary" : "Bob Bobber moved Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount' from Epic 'PRJ 516036 - PICKUP PFS - Team Awesome Support' to Epic 'PRJ 516036 - PI-03 PICKUP PFS - Team Awesome'.",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "eb7dfefa-57a4-5225-bc54-56f52be73801"
+    },
+    "target" : [ {
+      "name" : "PRJ 516036 - PI-03 PICKUP PFS - Team Awesome",
+      "verb" : "To",
+      "summary" : "",
+      "value" : {
+        "id" : "Epic:2076407:7074948",
+        "assetType" : "Epic",
+        "displayName" : "PRJ 516036 - PI-03 PICKUP PFS - Team Awesome",
+        "number" : "E-500776",
+        "assetState" : "Active",
+        "scope" : "Scope:19183469:66275001",
+        "colorName" : "sunglow",
+        "team" : "Team:7074:624233"
+      }
+    }, {
+      "name" : "PRJ 516036 - PICKUP PFS - Team Awesome Support",
+      "verb" : "From",
+      "summary" : "",
+      "value" : {
+        "id" : "Epic:1986376:6902952",
+        "assetType" : "Epic",
+        "displayName" : "PRJ 516036 - PICKUP PFS - Team Awesome Support",
+        "number" : "E-477318",
+        "assetState" : "Active",
+        "scope" : "Scope:18100948:66275012",
+        "colorName" : "sunglow",
+        "team" : "Team:7074:624233"
+      }
+    } ],
+    "id" : "c4192a24-55fc-54fc-9f6c-54091cef6eb5"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:70744",
+      "assetType" : "Member",
+      "displayName" : "Bob Bobber",
+      "username" : "bob",
+      "email" : "bob@bobber.com",
+      "avatar" : "Image:11562949"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Story:2072316:7074971",
+      "assetType" : "Story",
+      "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+      "number" : "B-244591",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-04-22T15:32:12.827Z",
+    "summary" : "Bob Bobber Updated Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "9bc6b048-c26c-52fe-903e-9004930a4787"
+    },
+    "target" : [ {
+      "name" : "Timebox",
+      "newValue" : "",
+      "oldValue" : {
+        "id" : "Timebox:19410283:67748819",
+        "assetType" : "Timebox",
+        "displayName" : "COM - REV - INV - CY25 - PI.02.5.1",
+        "assetState" : "Active"
+      },
+      "verb" : "Set",
+      "summary" : "Timebox was Set to ''"
+    } ],
+    "id" : "1e72601d-d9e8-5183-92a8-66b2b728509d"
+  },
+  "headers" : { }
+} ]

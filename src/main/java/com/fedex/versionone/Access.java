@@ -6,8 +6,6 @@ import com.versionone.apiclient.*;
 import com.versionone.apiclient.exceptions.V1Exception;
 import com.versionone.apiclient.interfaces.IAssetType;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -27,15 +25,14 @@ public class Access {
         query.getSelection().add(assetType.getAttributeDefinition("Name"));
         query.getSelection().add(assetType.getAttributeDefinition("Description"));
 
+        ActivityFetcher activityFetcher = new ActivityFetcher();
+        JsonNode root1 = activityFetcher.GetActivity(storyOid.toString());
+
         StoryFetcher fetcher = new StoryFetcher();
         List<String> stories = fetcher.getStoriesForTeam("Team:707462");
 
-        ActivityFetcher activityFetcher = new ActivityFetcher();
         for (String storyId : stories) {
-            String activity = activityFetcher.GetActivity2(storyId);
-
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode root = mapper.readTree(activity);
+            JsonNode root = activityFetcher.GetActivity(storyId);
 
             for (JsonNode node : root) {
                 JsonNode body = node.get("body");
