@@ -301,7 +301,7 @@
       "colorName" : null,
       "team" : "Team:7074:624233"
     },
-    "time" : "2025-05-06T13:24:53.343Z",
+    "time" : "2025-04-06T13:24:53.343Z",
     "summary" : "Bob Bobber Updated Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'",
     "provider" : {
       "stream" : "MetaStream",
@@ -381,7 +381,7 @@
       "colorName" : null,
       "team" : "Team:7074:624233"
     },
-    "time" : "2025-05-07T18:36:49.183Z",
+    "time" : "2025-06-07T18:36:49.183Z",
     "summary" : "Susie Sue Updated Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'",
     "provider" : {
       "stream" : "MetaStream",
@@ -389,7 +389,7 @@
     },
     "target" : [ {
       "name" : "Status",
-      "newValue" : "Build",
+      "newValue" : "Done",
       "oldValue" : "Ready for Build",
       "verb" : "Set",
       "summary" : "Status was Set to 'Build'"
@@ -418,7 +418,7 @@
       "colorName" : null,
       "team" : "Team:7074:624233"
     },
-    "time" : "2025-05-13T13:42:06.743Z",
+    "time" : "2025-04-13T13:42:06.743Z",
     "summary" : "Bob Bobber Updated Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'",
     "provider" : {
       "stream" : "MetaStream",
@@ -492,7 +492,7 @@
       "colorName" : null,
       "team" : "Team:7074:624233"
     },
-    "time" : "2025-05-06T13:29:53.007Z",
+    "time" : "2025-06-10T13:29:53.007Z",
     "summary" : "Bob Bobber Updated Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'",
     "provider" : {
       "stream" : "MetaStream",
@@ -500,7 +500,7 @@
     },
     "target" : [ {
       "name" : "Status",
-      "newValue" : "Build",
+      "newValue" : "Done",
       "oldValue" : "Ready for Build",
       "verb" : "Set",
       "summary" : "Status was Set to 'Build'"

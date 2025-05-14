@@ -31,6 +31,28 @@ public class StoryParser {
                 }
             }
         }
+
         return startDate;
+    }
+
+    public LocalDate findEndDate() {
+        LocalDate endDate = LocalDate.parse("2000-01-01");
+        for (JsonNode node : root) {
+            JsonNode body = node.get("body");
+            JsonNode target = body.get("target").get(0);
+            JsonNode newValue = target.get("newValue");
+            if (newValue != null && newValue.isTextual()) {
+                if (newValue.asText().equals("Done")) {
+                    String date = body.get("time").asText().substring(0, 10);
+                    LocalDate potentialStartDate = LocalDate.parse(date);
+
+                    if (potentialStartDate.isAfter(endDate)) {
+                        endDate = potentialStartDate;
+                    }
+                }
+            }
+        }
+
+        return endDate;
     }
 }

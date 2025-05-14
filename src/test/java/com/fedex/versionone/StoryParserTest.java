@@ -20,7 +20,21 @@ public class StoryParserTest {
         StoryParser parser = new StoryParser(root);
         LocalDate startDate = parser.findStartDate();
 
-        LocalDate expectedDate = LocalDate.of(2025, 5, 6);
+        LocalDate expectedDate = LocalDate.of(2025, 4, 6);
         assertThat(startDate).isEqualTo(expectedDate);
+    }
+
+    @Test
+    void findingEndDate_YieldsCorrectDate() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode root;
+        try (InputStream inputSteam = getClass().getClassLoader().getResourceAsStream("sampleStory.json")) {
+            root = mapper.readTree(inputSteam);
+        }
+        StoryParser parser = new StoryParser(root);
+        LocalDate endDate = parser.findEndDate();
+
+        LocalDate expectedDate = LocalDate.of(2025, 6, 10);
+        assertThat(endDate).isEqualTo(expectedDate);
     }
 }
