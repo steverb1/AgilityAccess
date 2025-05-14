@@ -1,7 +1,6 @@
 package com.fedex.versionone;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.TextNode;
 import com.versionone.Oid;
 import com.versionone.apiclient.*;
 import com.versionone.apiclient.exceptions.V1Exception;
@@ -13,8 +12,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class Access {
-    //public static String ACCESS_TOKEN = "1.MhSfm87QEC1+gRwUdHaoEG3EFd4=";
-
     public static void main(String[] args) throws V1Exception, IOException, InterruptedException {
         Connector connector = new Connector();
         V1Connector v1Connector = connector.buildV1Connector();
