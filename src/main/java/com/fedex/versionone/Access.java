@@ -27,6 +27,7 @@ public class Access {
             stories.add(new Story(storyId.substring(6), startDate, endDate));
         }
 
-        int i = 1;
+        OutputGenerator outputGenerator = new OutputGenerator();
+        outputGenerator.createCsvFile(stories);
     }
 }

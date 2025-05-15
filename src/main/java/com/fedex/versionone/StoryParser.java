@@ -17,18 +17,20 @@ public class StoryParser {
         LocalDate startDate = defaultStartDate;
         for (JsonNode node : root) {
             JsonNode body = node.get("body");
-            JsonNode target = body.get("target").get(0);
-            if (target == null) {
+            JsonNode targets = body.get("target");
+            if (targets == null) {
                 continue;
             }
-            JsonNode newValue = target.get("newValue");
-            if (newValue != null && newValue.isTextual()) {
-                if (newValue.asText().equals("Ready for Build")) {
-                    String date = body.get("time").asText().substring(0, 10);
-                    LocalDate potentialStartDate = LocalDate.parse(date);
+            for (JsonNode target : targets) {
+                JsonNode newValue = target.get("newValue");
+                if (newValue != null && newValue.isTextual()) {
+                    if (newValue.asText().equals("Ready for Build")) {
+                        String date = body.get("time").asText().substring(0, 10);
+                        LocalDate potentialStartDate = LocalDate.parse(date);
 
-                    if (potentialStartDate.isBefore(startDate)) {
-                        startDate = potentialStartDate;
+                        if (potentialStartDate.isBefore(startDate)) {
+                            startDate = potentialStartDate;
+                        }
                     }
                 }
             }
@@ -41,18 +43,20 @@ public class StoryParser {
         LocalDate endDate = defaultEndDate;
         for (JsonNode node : root) {
             JsonNode body = node.get("body");
-            JsonNode target = body.get("target").get(0);
-            if (target == null) {
+            JsonNode targets = body.get("target");
+            if (targets == null) {
                 continue;
             }
-            JsonNode newValue = target.get("newValue");
-            if (newValue != null && newValue.isTextual()) {
-                if (newValue.asText().equals("Done")) {
-                    String date = body.get("time").asText().substring(0, 10);
-                    LocalDate potentialStartDate = LocalDate.parse(date);
+            for (JsonNode target : targets) {
+                JsonNode newValue = target.get("newValue");
+                if (newValue != null && newValue.isTextual()) {
+                    if (newValue.asText().equals("Done")) {
+                        String date = body.get("time").asText().substring(0, 10);
+                        LocalDate potentialStartDate = LocalDate.parse(date);
 
-                    if (potentialStartDate.isAfter(endDate)) {
-                        endDate = potentialStartDate;
+                        if (potentialStartDate.isAfter(endDate)) {
+                            endDate = potentialStartDate;
+                        }
                     }
                 }
             }

@@ -308,6 +308,12 @@
       "guid" : "e05c62c7-d5f6-57d8-a28c-08a6914b6b0d"
     },
     "target" : [ {
+      "name" : "Name",
+      "newValue" : "Copy Of CSR2502 PRJ516036  - DaVinci Coders SI Support - Iteration 5 - HS8",
+      "oldValue" : "Copy Of Copy Of CSR2502 PRJ516036  - DaVinci Coders SI Support - Iteration 5 - HS3",
+      "verb" : "Set",
+      "summary" : "Name was Set to 'Copy Of CSR2502 PRJ516036  - DaVinci Coders SI Support - Iteration 5 - HS8'"
+    }, {
       "name" : "Status",
       "newValue" : "Ready for Build",
       "oldValue" : "Build",
@@ -425,6 +431,12 @@
       "guid" : "3279761e-af59-59a5-8441-91319bf33903"
     },
     "target" : [ {
+      "name" : "Name",
+      "newValue" : "Copy Of CSR2502 PRJ516036  - DaVinci Coders SI Support - Iteration 5 - HS8",
+      "oldValue" : "Copy Of Copy Of CSR2502 PRJ516036  - DaVinci Coders SI Support - Iteration 5 - HS3",
+      "verb" : "Set",
+      "summary" : "Name was Set to 'Copy Of CSR2502 PRJ516036  - DaVinci Coders SI Support - Iteration 5 - HS8'"
+    }, {
       "name" : "Status",
       "newValue" : "Ready for Build",
       "oldValue" : "Build",
