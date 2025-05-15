@@ -7,7 +7,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.LocalDate;
 
 public class StoryParserTest {
     @Test
@@ -18,10 +17,9 @@ public class StoryParserTest {
             root = mapper.readTree(inputSteam);
         }
         StoryParser parser = new StoryParser(root);
-        LocalDate startDate = parser.findStartDate();
+        String startDate = parser.findStartDate();
 
-        LocalDate expectedDate = LocalDate.of(2025, 4, 6);
-        assertThat(startDate).isEqualTo(expectedDate);
+        assertThat(startDate).isEqualTo("2025-04-06");
     }
 
     @Test
@@ -32,9 +30,8 @@ public class StoryParserTest {
             root = mapper.readTree(inputSteam);
         }
         StoryParser parser = new StoryParser(root);
-        LocalDate endDate = parser.findEndDate();
+        String endDate = parser.findEndDate();
 
-        LocalDate expectedDate = LocalDate.of(2025, 6, 10);
-        assertThat(endDate).isEqualTo(expectedDate);
+        assertThat(endDate).isEqualTo("2025-06-10");
     }
 }

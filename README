@@ -2,3 +2,4 @@ You'll need a config.properties file, that will look like:
 
 v1.token=<insert V1 token>
 v1.url=<insert V1 url>
+v1.team=<insert team ID>  (as in "Team:######")

@@ -7,12 +7,14 @@ import java.time.LocalDate;
 
 public class StoryParser {
     JsonNode root;
+    LocalDate defaultStartDate = LocalDate.parse("3000-01-01");
+    LocalDate defaultEndDate = LocalDate.parse("1000-01-01");
     public StoryParser(JsonNode root) throws IOException {
         this.root = root;
     }
 
-    public LocalDate findStartDate() {
-        LocalDate startDate = LocalDate.now();
+    public String findStartDate() {
+        LocalDate startDate = defaultStartDate;
         for (JsonNode node : root) {
             JsonNode body = node.get("body");
             JsonNode target = body.get("target").get(0);
@@ -32,11 +34,11 @@ public class StoryParser {
             }
         }
 
-        return startDate;
+        return startDate == defaultStartDate ? "" : startDate.toString();
     }
 
-    public LocalDate findEndDate() {
-        LocalDate endDate = LocalDate.parse("2000-01-01");
+    public String findEndDate() {
+        LocalDate endDate = defaultEndDate;
         for (JsonNode node : root) {
             JsonNode body = node.get("body");
             JsonNode target = body.get("target").get(0);
@@ -56,6 +58,6 @@ public class StoryParser {
             }
         }
 
-        return endDate;
+        return endDate == defaultEndDate ? "" : endDate.toString();
     }
 }
