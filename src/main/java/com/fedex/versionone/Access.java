@@ -4,24 +4,29 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.versionone.apiclient.exceptions.V1Exception;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Access {
     public static void main(String[] args) throws V1Exception, IOException, InterruptedException {
+        StoryFetcher storyFetcher = new StoryFetcher();
+        List<String> storyIds = storyFetcher.getStoriesForTeam("Team:707462");
+
         ActivityFetcher activityFetcher = new ActivityFetcher();
 
-        StoryFetcher storyFetcher = new StoryFetcher();
-        List<String> stories = storyFetcher.getStoriesForTeam("Team:707462");
+        List<Story> stories = new ArrayList<>();
 
-        for (String storyId : stories) {
-            JsonNode root = activityFetcher.GetActivity(storyId);
+        for (String storyId : storyIds) {
+            JsonNode storyRoot = activityFetcher.GetActivity(storyId);
 
-            for (JsonNode node : root) {
-                JsonNode body = node.get("body");
-                JsonNode verb = body.get("verb");
+            StoryParser storyParser = new StoryParser(storyRoot);
+            LocalDate startDate = storyParser.findStartDate();
+            LocalDate endDate = storyParser.findEndDate();
 
-                String verbText = verb.values().toString();
-            }
+            stories.add(new Story(storyId.substring(6), startDate.toString(), endDate.toString()));
         }
+
+        int i = 1;
     }
 }

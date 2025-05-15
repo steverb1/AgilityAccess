@@ -1,11 +1,8 @@
 package com.fedex.versionone;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.LocalDate;
 
 public class StoryParser {
@@ -19,6 +16,9 @@ public class StoryParser {
         for (JsonNode node : root) {
             JsonNode body = node.get("body");
             JsonNode target = body.get("target").get(0);
+            if (target == null) {
+                continue;
+            }
             JsonNode newValue = target.get("newValue");
             if (newValue != null && newValue.isTextual()) {
                 if (newValue.asText().equals("Ready for Build")) {
@@ -40,6 +40,9 @@ public class StoryParser {
         for (JsonNode node : root) {
             JsonNode body = node.get("body");
             JsonNode target = body.get("target").get(0);
+            if (target == null) {
+                continue;
+            }
             JsonNode newValue = target.get("newValue");
             if (newValue != null && newValue.isTextual()) {
                 if (newValue.asText().equals("Done")) {
