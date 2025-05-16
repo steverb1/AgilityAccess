@@ -1,4 +1,4 @@
-package com.fedex.versionone;
+package com.access.versionone;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -8,8 +8,6 @@ import java.util.*;
 
 public class StoryParser {
     JsonNode root;
-    LocalDate defaultStartDate = LocalDate.parse("3000-01-01");
-    LocalDate defaultEndDate = LocalDate.parse("1000-01-01");
     List<String> states = new ArrayList<>() {{
         add("Ready for Build");
         add("Build");

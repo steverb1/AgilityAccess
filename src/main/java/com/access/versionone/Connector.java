@@ -1,4 +1,4 @@
-package com.fedex.versionone;
+package com.access.versionone;
 
 import com.versionone.apiclient.V1Connector;
 import com.versionone.apiclient.exceptions.V1Exception;

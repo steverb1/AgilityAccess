@@ -1,4 +1,4 @@
-package com.fedex.versionone;
+package com.access.versionone;
 
 import java.io.FileInputStream;
 import java.io.IOException;
