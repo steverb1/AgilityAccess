@@ -396,6 +396,43 @@
     "target" : [ {
       "name" : "Status",
       "newValue" : "Done",
+      "oldValue" : "Build",
+      "verb" : "Set",
+      "summary" : "Status was Set to 'Build'"
+    } ],
+    "id" : "85962409-cd43-5689-9e10-cb947582890a"
+  },
+  "headers" : { }
+}, {
+  "body" : {
+    "actor" : {
+      "id" : "Member:569825",
+      "assetType" : "Member",
+      "displayName" : "Susie Sue",
+      "username" : "susie",
+      "email" : "susie@sue.com",
+      "avatar" : "Image:1132376"
+    },
+    "verb" : "Updated",
+    "object" : {
+      "id" : "Story:20723163:71411557",
+      "assetType" : "Story",
+      "displayName" : "CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount",
+      "number" : "B-244591",
+      "assetState" : "Active",
+      "scope" : "Scope:19183469:66275001",
+      "colorName" : null,
+      "team" : "Team:7074:624233"
+    },
+    "time" : "2025-06-01T18:36:49.183Z",
+    "summary" : "Susie Sue Updated Story 'CSR2503 PRJ516036 Pickup PFS - Fix CA summary section - title should not show total amount'",
+    "provider" : {
+      "stream" : "MetaStream",
+      "guid" : "456b8b1b-8ae1-548e-b803-20684a7de688"
+    },
+    "target" : [ {
+      "name" : "Status",
+      "newValue" : "Build",
       "oldValue" : "Ready for Build",
       "verb" : "Set",
       "summary" : "Status was Set to 'Build'"

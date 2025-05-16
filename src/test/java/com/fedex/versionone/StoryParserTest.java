@@ -10,28 +10,18 @@ import java.io.InputStream;
 
 public class StoryParserTest {
     @Test
-    void findingStartDate_YieldsCorrectDate() throws IOException {
+    void findingSpecifiedStates_YieldsCorrectDates() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root;
         try (InputStream inputSteam = getClass().getClassLoader().getResourceAsStream("sampleStory.json")) {
             root = mapper.readTree(inputSteam);
         }
+
         StoryParser parser = new StoryParser(root);
-        String startDate = parser.findStartDate();
+        StoryHistory history = parser.findHistory("");
 
-        assertThat(startDate).isEqualTo("2025-04-06");
-    }
-
-    @Test
-    void findingEndDate_YieldsCorrectDate() throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode root;
-        try (InputStream inputSteam = getClass().getClassLoader().getResourceAsStream("sampleStory.json")) {
-            root = mapper.readTree(inputSteam);
-        }
-        StoryParser parser = new StoryParser(root);
-        String endDate = parser.findEndDate();
-
-        assertThat(endDate).isEqualTo("2025-06-10");
+        assertThat(history.readyForBuild()).isEqualTo("2025-04-06");
+        assertThat(history.build()).isEqualTo("2025-06-01");
+        assertThat(history.done()).isEqualTo("2025-06-10");
     }
 }

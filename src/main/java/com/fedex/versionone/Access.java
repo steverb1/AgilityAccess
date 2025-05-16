@@ -14,20 +14,18 @@ public class Access {
         List<String> storyIds = storyFetcher.getStoriesForTeam(team);
 
         ActivityFetcher activityFetcher = new ActivityFetcher();
-
-        List<Story> stories = new ArrayList<>();
+        List<StoryHistory> histories = new ArrayList<>();
 
         for (String storyId : storyIds) {
             JsonNode storyRoot = activityFetcher.GetActivity(storyId);
 
             StoryParser storyParser = new StoryParser(storyRoot);
-            String startDate = storyParser.findStartDate();
-            String endDate = storyParser.findEndDate();
+            StoryHistory history = storyParser.findHistory(storyId);
 
-            stories.add(new Story(storyId.substring(6), startDate, endDate));
+            histories.add(history);
         }
 
         OutputGenerator outputGenerator = new OutputGenerator();
-        outputGenerator.createCsvFile(stories);
+        outputGenerator.createCsvFile(histories);
     }
 }
