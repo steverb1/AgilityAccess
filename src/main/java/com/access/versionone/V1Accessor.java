@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Access {
+public class V1Accessor {
     public static void main(String[] args) throws V1Exception, IOException, InterruptedException {
         StoryFetcher storyFetcher = new StoryFetcher();
         String team = PropertyFetcher.getProperty("v1.team");
@@ -23,7 +23,7 @@ public class Access {
 
             StoryParser storyParser = new StoryParser(storyRoot);
 
-            Map<String, LocalDate> storyDates = storyParser.findHistory(storyId);
+            Map<String, LocalDate> storyDates = storyParser.findStateChangeDates(storyId);
             StoryHistory storyHistory = new StoryHistory(storyId, storyDates);
             histories.add(storyHistory);
         }
