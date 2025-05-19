@@ -8,15 +8,15 @@ import java.util.*;
 
 public class StoryParser {
     JsonNode root;
-    List<String> states = new ArrayList<>() {{
-        add("Ready for Build");
-        add("Build");
-        add("Done");
-    }};
+    List<String> states = new ArrayList<>();
     StateChanges stateChanges = new StateChanges();
 
     public StoryParser(JsonNode root) throws IOException {
         this.root = root;
+        String configuredStates = PropertyFetcher.getProperty("states");
+        states = Arrays.stream(configuredStates.split(","))
+                .map(String::trim)
+                .toList();
     }
 
     public StoryHistory findHistory(String storyId) {
@@ -44,42 +44,76 @@ public class StoryParser {
         return new StoryHistory(storyId.substring(6), readyForBuildDate, buildDate, doneDate);
     }
 
-    private static class StateChanges {
+    private class StateChanges {
         LocalDate readyForBuild;
         LocalDate build;
         LocalDate done;
 
+        Map<String, LocalDate> stateDates = new LinkedHashMap<>();
+
+        StateChanges() {
+            for (String state : states) {
+                stateDates.put(state, null);
+            }
+        }
+
         void update(String state, LocalDate date) {
-            if (state.equals("Ready for Build")) {
-                if (readyForBuild == null) {
-                    readyForBuild = date;
+            boolean finalState = isLastState(state);
+
+            if (stateDates.get(state) == null) {
+                stateDates.put(state, date);
+            }
+            else {
+                if (!finalState) {
+                    if (date.isBefore(stateDates.get(state))) {
+                        stateDates.put(state, date);
+                    }
                 }
                 else {
-                    if (date.isBefore(readyForBuild)) {
+                    if (date.isAfter(stateDates.get(state))) {
+                        stateDates.put(state, date);
+                    }
+                }
+            }
+
+            switch (state) {
+                case "Ready for Build" -> {
+                    if (readyForBuild == null) {
                         readyForBuild = date;
+                    } else {
+                        if (date.isBefore(readyForBuild)) {
+                            readyForBuild = date;
+                        }
                     }
                 }
-            }
-            else if (state.equals("Build")) {
-                if (build == null) {
-                    build = date;
-                }
-                else {
-                    if (date.isBefore(build)) {
+                case "Build" -> {
+                    if (build == null) {
                         build = date;
+                    } else {
+                        if (date.isBefore(build)) {
+                            build = date;
+                        }
                     }
                 }
-            }
-            else if (state.equals("Done")) {
-                if (done == null) {
-                    done = date;
-                }
-                else {
-                    if (date.isAfter(done)) {
+                case "Done" -> {
+                    if (done == null) {
                         done = date;
+                    } else {
+                        if (date.isAfter(done)) {
+                            done = date;
+                        }
                     }
                 }
             }
+        }
+
+        boolean isLastState(String state) {
+            String lastKey = null;
+            for (String currentKey : stateDates.keySet()) {
+                lastKey = currentKey;
+            }
+
+            return state.equals(lastKey);
         }
     }
 }
