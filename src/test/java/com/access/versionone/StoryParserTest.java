@@ -18,7 +18,7 @@ public class StoryParserTest {
         }
 
         StoryParser parser = new StoryParser(root);
-        StoryHistory history = parser.findHistory("");
+        StoryHistory history = parser.findHistory("Story:207231");
 
         assertThat(history.readyForBuild()).isEqualTo("2025-04-06");
         assertThat(history.build()).isEqualTo("2025-06-01");
