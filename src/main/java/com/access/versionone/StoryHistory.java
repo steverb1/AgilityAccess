@@ -1,4 +1,7 @@
 package com.access.versionone;
 
-public record StoryHistory(String id, String readyForBuild, String build, String done) {
+import java.time.LocalDate;
+import java.util.Map;
+
+public record StoryHistory(String storyId, Map<String, LocalDate> stateDates) {
 }

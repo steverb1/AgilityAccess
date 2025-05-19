@@ -7,6 +7,8 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.util.Map;
 
 public class StoryParserTest {
     @Test
@@ -18,10 +20,10 @@ public class StoryParserTest {
         }
 
         StoryParser parser = new StoryParser(root);
-        StoryHistory history = parser.findHistory("Story:207231");
+        Map<String, LocalDate> history = parser.findHistory("Story:207231");
 
-        assertThat(history.readyForBuild()).isEqualTo("2025-04-06");
-        assertThat(history.build()).isEqualTo("2025-06-01");
-        assertThat(history.done()).isEqualTo("2025-06-10");
+        assertThat(history.get("Ready for Build")).isEqualTo("2025-04-06");
+        assertThat(history.get("Build")).isEqualTo("2025-06-01");
+        assertThat(history.get("Done")).isEqualTo("2025-06-10");
     }
 }

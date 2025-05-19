@@ -17,9 +17,13 @@ public class StoryParser {
         states = Arrays.stream(configuredStates.split(","))
                 .map(String::trim)
                 .toList();
+
+        for (String state : states) {
+            stateDates.put(state, null);
+        }
     }
 
-    public StoryHistory findHistory(String storyId) {
+    public Map<String, LocalDate> findHistory(String storyId) {
         for (JsonNode node : root) {
             JsonNode body = node.get("body");
             JsonNode targets = body.get("target");
@@ -37,11 +41,7 @@ public class StoryParser {
             }
         }
 
-        String readyForBuildDate = stateDates.get("Ready for Build") == null ? "" : stateDates.get("Ready for Build").toString();
-        String buildDate = stateDates.get("Build") == null ? "" : stateDates.get("Build").toString();
-        String doneDate = stateDates.get("Done") == null ? "" : stateDates.get("Done").toString();
-
-        return new StoryHistory(storyId.substring(6), readyForBuildDate, buildDate, doneDate);
+        return stateDates;
     }
 
     void update(String state, LocalDate date) {

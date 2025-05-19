@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.versionone.apiclient.exceptions.V1Exception;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Access {
     public static void main(String[] args) throws V1Exception, IOException, InterruptedException {
@@ -20,9 +22,10 @@ public class Access {
             JsonNode storyRoot = activityFetcher.GetActivity(storyId);
 
             StoryParser storyParser = new StoryParser(storyRoot);
-            StoryHistory history = storyParser.findHistory(storyId);
 
-            histories.add(history);
+            Map<String, LocalDate> storyDates = storyParser.findHistory(storyId);
+            StoryHistory storyHistory = new StoryHistory(storyId, storyDates);
+            histories.add(storyHistory);
         }
 
         OutputGenerator outputGenerator = new OutputGenerator();
