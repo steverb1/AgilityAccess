@@ -20,7 +20,7 @@ public class StoryParserTest {
         }
 
         StoryParser parser = new StoryParser(root);
-        Map<String, LocalDate> history = parser.findStateChangeDates("Story:207231");
+        Map<String, LocalDate> history = parser.findStateChangeDates();
 
         assertThat(history.get("Ready for Build")).isEqualTo("2025-04-06");
         assertThat(history.get("Build")).isEqualTo("2025-06-01");

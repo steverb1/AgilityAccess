@@ -23,7 +23,7 @@ public class StoryParser {
         }
     }
 
-    public Map<String, LocalDate> findStateChangeDates(String storyId) {
+    public Map<String, LocalDate> findStateChangeDates() {
         for (JsonNode node : root) {
             JsonNode body = node.get("body");
             JsonNode targets = body.get("target");

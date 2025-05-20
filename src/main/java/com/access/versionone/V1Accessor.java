@@ -23,7 +23,7 @@ public class V1Accessor {
 
             StoryParser storyParser = new StoryParser(storyRoot);
 
-            Map<String, LocalDate> storyDates = storyParser.findStateChangeDates(storyId);
+            Map<String, LocalDate> storyDates = storyParser.findStateChangeDates();
             StoryHistory storyHistory = new StoryHistory(storyId, storyDates);
             histories.add(storyHistory);
         }
