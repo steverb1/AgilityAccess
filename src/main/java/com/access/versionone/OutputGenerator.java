@@ -9,11 +9,17 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputGenerator {
-    void createCsvFile(List<StoryHistory> stories) {
+    void createCsvFile(List<StoryHistory> stories, List<Float> storyPoints) throws IOException {
+        boolean includePoints = PropertyFetcher.getProperty("includeStoryPoints").equals("true");
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("stories.csv"))) {
             String headerLine = "ID, " + PropertyFetcher.getProperty("states");
+            if (includePoints) {
+                headerLine += ", " + "Points";
+            }
             writer.write(headerLine);
             writer.newLine();
+            int index = 0;
             for (StoryHistory story : stories) {
                 Map<String, LocalDate> stateDates = story.stateDates();
                 List<String> lineContents = new ArrayList<>();
@@ -33,8 +39,16 @@ public class OutputGenerator {
                         builder.append(",");
                     }
                 }
+                if (includePoints) {
+                    Float points = storyPoints.get(index);
+                    builder.append(",");
+                    if (points != null) {
+                        builder.append(points);
+                    }
+                }
                 writer.write(builder.toString());
                 writer.newLine();
+                index++;
             }
         } catch (IOException _) {
 

@@ -28,12 +28,12 @@ public class V1Accessor {
             StoryHistory storyHistory = new StoryHistory(storyId, storyDates);
             histories.add(storyHistory);
 
-            if (PropertyFetcher.getProperty("extractStoryPoints").equals("true")) {
+            if (PropertyFetcher.getProperty("includeStoryPoints").equals("true")) {
                 storyPoints.add(storyParser.findStoryEstimate());
             }
         }
 
         OutputGenerator outputGenerator = new OutputGenerator();
-        outputGenerator.createCsvFile(histories);
+        outputGenerator.createCsvFile(histories, storyPoints);
     }
 }
