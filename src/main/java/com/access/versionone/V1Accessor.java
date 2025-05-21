@@ -14,6 +14,7 @@ public class V1Accessor {
         StoryFetcher storyFetcher = new StoryFetcher();
         String team = PropertyFetcher.getProperty("v1.team");
         List<String> storyIds = storyFetcher.getStoriesForTeam(team);
+        List<Float> storyPoints = new ArrayList<>();
 
         ActivityFetcher activityFetcher = new ActivityFetcher();
         List<StoryHistory> histories = new ArrayList<>();
@@ -26,6 +27,10 @@ public class V1Accessor {
             Map<String, LocalDate> storyDates = storyParser.findStateChangeDates();
             StoryHistory storyHistory = new StoryHistory(storyId, storyDates);
             histories.add(storyHistory);
+
+            if (PropertyFetcher.getProperty("extractStoryPoints").equals("true")) {
+                storyPoints.add(storyParser.findStoryEstimate());
+            }
         }
 
         OutputGenerator outputGenerator = new OutputGenerator();

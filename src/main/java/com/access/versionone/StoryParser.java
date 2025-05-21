@@ -68,7 +68,7 @@ public class StoryParser {
         return state.equals(states.getLast());
     }
 
-    public float findStoryEstimate() {
+    public Float findStoryEstimate() {
         for (JsonNode node : root) {
             JsonNode body = node.get("body");
             JsonNode targets = body.get("target");
@@ -79,12 +79,12 @@ public class StoryParser {
                 JsonNode name = target.get("name");
                 if (name.asText().equals("Estimate")) {
                     JsonNode estimate = target.get("newValue");
-                    if (estimate != null) {
+                    if (estimate != null && !estimate.asText().isEmpty()) {
                         return Float.parseFloat(estimate.asText());
                     }
                 }
             }
         }
-        return 0.0f;
+        return null;
     }
 }
