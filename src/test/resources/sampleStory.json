@@ -314,6 +314,12 @@
       "verb" : "Set",
       "summary" : "Name was Set to 'Copy Of CSR2502 PRJ516036  - DaVinci Coders SI Support - Iteration 5 - HS8'"
     }, {
+      "name" : "Estimate",
+      "newValue" : "5.00",
+      "oldValue" : null,
+      "verb" : "Set",
+      "summary" : "Estimate was Set to '5.00'"
+    }, {
       "name" : "Status",
       "newValue" : "Ready for Build",
       "oldValue" : "Build",

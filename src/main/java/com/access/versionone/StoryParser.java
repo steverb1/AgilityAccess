@@ -67,4 +67,24 @@ public class StoryParser {
     boolean isLastState(String state) {
         return state.equals(states.getLast());
     }
+
+    public float findStoryEstimate() {
+        for (JsonNode node : root) {
+            JsonNode body = node.get("body");
+            JsonNode targets = body.get("target");
+            if (targets == null) {
+                continue;
+            }
+            for (JsonNode target : targets) {
+                JsonNode name = target.get("name");
+                if (name.asText().equals("Estimate")) {
+                    JsonNode estimate = target.get("newValue");
+                    if (estimate != null) {
+                        return Float.parseFloat(estimate.asText());
+                    }
+                }
+            }
+        }
+        return 0.0f;
+    }
 }

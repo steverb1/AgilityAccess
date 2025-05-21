@@ -26,4 +26,18 @@ public class StoryParserTest {
         assertThat(history.get("Build")).isEqualTo("2025-06-01");
         assertThat(history.get("Done")).isEqualTo("2025-06-10");
     }
+
+    @Test
+    void findingStoryEstimate_YieldsCorrectEstimate() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode root;
+        try (InputStream inputSteam = getClass().getClassLoader().getResourceAsStream("sampleStory.json")) {
+            root = mapper.readTree(inputSteam);
+        }
+
+        StoryParser parser = new StoryParser(root);
+        float estimate = parser.findStoryEstimate();
+
+        assertThat(estimate).isEqualTo(5.0f);
+    }
 }
