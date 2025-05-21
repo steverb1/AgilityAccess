@@ -12,8 +12,8 @@ import java.util.Map;
 public class V1Accessor {
     public static void main(String[] args) throws V1Exception, IOException, InterruptedException {
         StoryFetcher storyFetcher = new StoryFetcher();
-        String team = PropertyFetcher.getProperty("v1.team");
-        List<String> storyIds = storyFetcher.getStoriesForTeam(team);
+        String teamOidString = PropertyFetcher.getProperty("v1.team");
+        List<String> storyIds = storyFetcher.getStoriesForTeam(teamOidString);
         List<Float> storyPoints = new ArrayList<>();
 
         ActivityFetcher activityFetcher = new ActivityFetcher();
@@ -33,7 +33,10 @@ public class V1Accessor {
             }
         }
 
+        TeamFetcher teamFetcher = new TeamFetcher();
+        String teamName = teamFetcher.getTeamName(teamOidString);
+
         OutputGenerator outputGenerator = new OutputGenerator();
-        outputGenerator.createCsvFile(histories, storyPoints);
+        outputGenerator.createCsvFile(histories, storyPoints, teamName);
     }
 }
