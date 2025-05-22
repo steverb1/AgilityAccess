@@ -23,7 +23,6 @@ public class OutputGenerator {
             }
             writer.write(headerLine);
             writer.newLine();
-            int index = 0;
             for (StoryHistory story : stories) {
                 Map<String, LocalDate> stateDates = story.stateDates();
                 List<String> lineContents = new ArrayList<>();
@@ -56,7 +55,6 @@ public class OutputGenerator {
 
                 writer.write(builder.toString());
                 writer.newLine();
-                index++;
             }
         } catch (IOException _) {
 
