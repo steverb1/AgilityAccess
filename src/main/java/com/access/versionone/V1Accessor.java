@@ -8,16 +8,10 @@ import java.util.Map;
 
 public class V1Accessor {
     public static void main(String[] args) throws V1Exception, IOException, InterruptedException {
-        Map<String, String> teamOidToTeamName;
+        Map<String, String> teamOidToTeamName = new TeamFetcher().getTeamsToProcess();
 
-        TeamFetcher teamFetcher = new TeamFetcher();
-        teamOidToTeamName = teamFetcher.getTeamsToProcess();
+        List<StoryHistory> histories = new StoryFetcher().getStoryHistories(teamOidToTeamName);
 
-        StoryFetcher storyFetcher = new StoryFetcher();
-        List<StoryHistory> histories = storyFetcher.getStoryHistories(teamOidToTeamName);
-
-        OutputGenerator outputGenerator = new OutputGenerator();
-        outputGenerator.createCsvFile(histories);
+        new OutputGenerator().createCsvFile(histories);
     }
-
 }

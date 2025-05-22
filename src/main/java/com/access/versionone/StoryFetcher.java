@@ -49,7 +49,7 @@ public class StoryFetcher {
         return histories;
     }
 
-    List<String> getStoriesForTeam(String teamOid) throws V1Exception, IOException {
+    private List<String> getStoriesForTeam(String teamOid) throws V1Exception, IOException {
         Connector connector = new Connector();
         V1Connector v1Connector = connector.buildV1Connector();
 

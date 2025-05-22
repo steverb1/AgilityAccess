@@ -32,7 +32,7 @@ public class TeamFetcher {
         return teamOidToTeamName;
     }
 
-    String getTeamName(String teamOidString) throws V1Exception, IOException {
+    private String getTeamName(String teamOidString) throws V1Exception, IOException {
         Connector connector = new Connector();
         V1Connector v1Connector = connector.buildV1Connector();
         MetaModel metaModel = new MetaModel(v1Connector);
@@ -49,7 +49,7 @@ public class TeamFetcher {
         return teamAsset.getAttribute(metaModel.getAttributeDefinition("Team.Name")).getValue().toString();
     }
 
-    Map<String, String> getTeamsForScope(String scope) throws V1Exception, IOException {
+    private Map<String, String> getTeamsForScope(String scope) throws V1Exception, IOException {
         Connector connector = new Connector();
         V1Connector v1Connector = connector.buildV1Connector();
         MetaModel metaModel = new MetaModel(v1Connector);
