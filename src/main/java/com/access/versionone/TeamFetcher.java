@@ -12,6 +12,43 @@ import java.io.IOException;
 import java.util.*;
 
 public class TeamFetcher {
+    Map<String, String> getTeamsToProcess() throws IOException, V1Exception {
+        Map<String, String> teamOidToTeamName;
+        String scopeOid = PropertyFetcher.getProperty("v1.planningLevel");
+
+        if (scopeOid == null  || scopeOid.isEmpty()) {
+            String teamOid = PropertyFetcher.getProperty("v1.team");
+            if (teamOid == null || teamOid.isEmpty()) {
+                return new HashMap<>();
+            }
+
+            String teamName = getTeamName(teamOid);
+            teamOidToTeamName = new HashMap<>();
+            teamOidToTeamName.put(teamOid, teamName);
+        }
+        else {
+            teamOidToTeamName = getTeamsForScope(scopeOid);
+        }
+        return teamOidToTeamName;
+    }
+
+    String getTeamName(String teamOidString) throws V1Exception, IOException {
+        Connector connector = new Connector();
+        V1Connector v1Connector = connector.buildV1Connector();
+        MetaModel metaModel = new MetaModel(v1Connector);
+        Services services = new Services(v1Connector);
+
+        Oid teamOid = Oid.fromToken(teamOidString, metaModel);
+
+        Query query = new Query(teamOid);
+        query.getSelection().add(metaModel.getAttributeDefinition("Team.Name"));
+
+        QueryResult result = services.retrieve(query);
+        Asset teamAsset = result.getAssets()[0];
+
+        return teamAsset.getAttribute(metaModel.getAttributeDefinition("Team.Name")).getValue().toString();
+    }
+
     Map<String, String> getTeamsForScope(String scope) throws V1Exception, IOException {
         Connector connector = new Connector();
         V1Connector v1Connector = connector.buildV1Connector();

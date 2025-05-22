@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputGenerator {
-    void createCsvFile(List<StoryHistory> stories, List<Float> storyPoints, List<String> teamNames) throws IOException {
+    void createCsvFile(List<StoryHistory> stories) throws IOException {
         boolean includePoints = PropertyFetcher.getProperty("includeStoryPoints").equals("true");
         boolean includeTeam = PropertyFetcher.getProperty("includeTeamName").equals("true");
 
@@ -45,16 +45,13 @@ public class OutputGenerator {
                 }
 
                 if (includePoints) {
-                    Float points = storyPoints.get(index);
                     builder.append(",");
-                    if (points != null) {
-                        builder.append(points);
-                    }
+                    builder.append(story.storyPoints());
                 }
 
                 if (includeTeam) {
                     builder.append(",");
-                    builder.append(teamNames.get(index));
+                    builder.append(story.teamName());
                 }
 
                 writer.write(builder.toString());

@@ -1,5 +1,6 @@
 package com.access.versionone;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.versionone.apiclient.*;
 import com.versionone.apiclient.exceptions.V1Exception;
 import com.versionone.apiclient.filters.AndFilterTerm;
@@ -14,8 +15,40 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class StoryFetcher {
+    List<StoryHistory> getStoryHistories(Map<String, String> teamOidToTeamName) throws V1Exception, IOException, InterruptedException {
+        List<StoryHistory> histories = new ArrayList<>();
+
+        for (String teamOid : teamOidToTeamName.keySet()) {
+            List<String> storyIds = getStoriesForTeam(teamOid);
+
+            ActivityFetcher activityFetcher = new ActivityFetcher();
+
+            Float storyPoints = null;
+            String teamName = "";
+
+            for (String storyId : storyIds) {
+                JsonNode storyRoot = activityFetcher.GetActivity(storyId);
+
+                StoryParser storyParser = new StoryParser(storyRoot);
+                Map<String, LocalDate> storyDates = storyParser.findStateChangeDates();
+
+                if (PropertyFetcher.getProperty("includeStoryPoints").equals("true")) {
+                    storyPoints = storyParser.findStoryEstimate();
+                }
+                if (PropertyFetcher.getProperty("includeTeamName").equals("true")) {
+                    teamName = teamOidToTeamName.get(teamOid);
+                }
+
+                StoryHistory storyHistory = new StoryHistory(storyId, storyDates, storyPoints, teamName);
+                histories.add(storyHistory);
+            }
+        }
+        return histories;
+    }
+
     List<String> getStoriesForTeam(String teamOid) throws V1Exception, IOException {
         Connector connector = new Connector();
         V1Connector v1Connector = connector.buildV1Connector();
