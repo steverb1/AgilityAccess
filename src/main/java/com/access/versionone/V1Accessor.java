@@ -13,30 +13,36 @@ public class V1Accessor {
     public static void main(String[] args) throws V1Exception, IOException, InterruptedException {
         StoryFetcher storyFetcher = new StoryFetcher();
         String teamOidString = PropertyFetcher.getProperty("v1.team");
-        List<String> storyIds = storyFetcher.getStoriesForTeam(teamOidString);
+
+        TeamFetcher teamFetcher = new TeamFetcher();
+        String scopeOid = PropertyFetcher.getProperty("v1.art");
+        Map<String, String> teamOidToTeamName  = teamFetcher.getTeamsForScope(scopeOid);
+
         List<Float> storyPoints = new ArrayList<>();
-
-        ActivityFetcher activityFetcher = new ActivityFetcher();
         List<StoryHistory> histories = new ArrayList<>();
+        List<String> teamNames = new ArrayList<>();
+        for (String teamOid : teamOidToTeamName.keySet()) {
+            List<String> storyIds = storyFetcher.getStoriesForTeam(teamOid);
 
-        for (String storyId : storyIds) {
-            JsonNode storyRoot = activityFetcher.GetActivity(storyId);
+            ActivityFetcher activityFetcher = new ActivityFetcher();
 
-            StoryParser storyParser = new StoryParser(storyRoot);
+            for (String storyId : storyIds) {
+                JsonNode storyRoot = activityFetcher.GetActivity(storyId);
 
-            Map<String, LocalDate> storyDates = storyParser.findStateChangeDates();
-            StoryHistory storyHistory = new StoryHistory(storyId, storyDates);
-            histories.add(storyHistory);
+                StoryParser storyParser = new StoryParser(storyRoot);
 
-            if (PropertyFetcher.getProperty("includeStoryPoints").equals("true")) {
-                storyPoints.add(storyParser.findStoryEstimate());
+                Map<String, LocalDate> storyDates = storyParser.findStateChangeDates();
+                StoryHistory storyHistory = new StoryHistory(storyId, storyDates);
+                histories.add(storyHistory);
+
+                if (PropertyFetcher.getProperty("includeStoryPoints").equals("true")) {
+                    storyPoints.add(storyParser.findStoryEstimate());
+                }
+                teamNames.add(teamOidToTeamName.get(teamOid));
             }
         }
 
-        TeamFetcher teamFetcher = new TeamFetcher();
-        String teamName = teamFetcher.getTeamName(teamOidString);
-
         OutputGenerator outputGenerator = new OutputGenerator();
-        outputGenerator.createCsvFile(histories, storyPoints, teamName);
+        outputGenerator.createCsvFile(histories, storyPoints, teamNames);
     }
 }

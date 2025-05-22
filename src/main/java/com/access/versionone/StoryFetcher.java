@@ -26,8 +26,8 @@ public class StoryFetcher {
         IAssetType storyType = metaModel.getAssetType("Story");
         Query query = new Query(storyType);
 
-        IAttributeDefinition createDateAttr = storyType.getAttributeDefinition("CreateDate");
-        LocalDate startDate = LocalDate.parse(PropertyFetcher.getProperty("startDate"));
+        IAttributeDefinition createDateAttr = storyType.getAttributeDefinition("ClosedDate");
+        LocalDate startDate = LocalDate.parse(PropertyFetcher.getProperty("fromClosedDate"));
         Date since = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         FilterTerm dateFilter = new FilterTerm(createDateAttr);
         dateFilter.greater(since);
