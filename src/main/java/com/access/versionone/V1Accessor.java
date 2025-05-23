@@ -2,6 +2,7 @@ package com.access.versionone;
 
 import com.versionone.apiclient.exceptions.V1Exception;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,8 @@ public class V1Accessor {
 
         List<StoryHistory> histories = new StoryFetcher().getStoryHistories(teamOidToTeamName);
 
-        new OutputGenerator().createCsvFile(histories);
+        new OutputGenerator(new FileWriter("stories.csv")).createCsvFile(histories,
+                PropertyFetcher.getProperty("includeStoryPoints").equals("true"),
+                PropertyFetcher.getProperty("includeTeamName").equals("true"));
     }
 }

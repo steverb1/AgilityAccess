@@ -1,24 +1,26 @@
 package com.access.versionone;
 
 import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class OutputGenerator {
-    void createCsvFile(List<StoryHistory> stories) throws IOException {
-        boolean includePoints = PropertyFetcher.getProperty("includeStoryPoints").equals("true");
-        boolean includeTeam = PropertyFetcher.getProperty("includeTeamName").equals("true");
+    Writer output;
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("stories.csv"))) {
+    public OutputGenerator(Writer output) {
+        this.output = output;
+    }
+    void createCsvFile(List<StoryHistory> stories, boolean includePoints, boolean includeTeamName) {
+        try (BufferedWriter writer = new BufferedWriter(output)) {
             String headerLine = "ID, " + PropertyFetcher.getProperty("states");
             if (includePoints) {
                 headerLine += ", " + "Points";
             }
-            if (includeTeam) {
+            if (includeTeamName) {
                 headerLine += ", " + "Team";
             }
             writer.write(headerLine);
@@ -48,7 +50,7 @@ public class OutputGenerator {
                     builder.append(story.storyPoints());
                 }
 
-                if (includeTeam) {
+                if (includeTeamName) {
                     builder.append(",");
                     builder.append(story.teamName());
                 }
