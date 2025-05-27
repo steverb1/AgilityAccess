@@ -10,6 +10,7 @@ import com.versionone.apiclient.interfaces.IAttributeDefinition;
 import com.versionone.apiclient.services.QueryResult;
 
 import java.io.IOException;
+import java.net.http.HttpClient;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -24,13 +25,13 @@ public class StoryFetcher {
         for (String teamOid : teamOidToTeamName.keySet()) {
             List<String> storyIds = getStoriesForTeam(teamOid);
 
-            ActivityFetcher activityFetcher = new ActivityFetcher();
+            ActivityFetcher activityFetcher = new ActivityFetcher(HttpClient.newHttpClient());
 
             Float storyPoints = null;
             String teamName = "";
 
             for (String storyId : storyIds) {
-                JsonNode storyRoot = activityFetcher.GetActivity(storyId);
+                JsonNode storyRoot = activityFetcher.getActivity(storyId, PropertyFetcher.getProperty("v1.url"), PropertyFetcher.getProperty("v1.token"));
 
                 StoryParser storyParser = new StoryParser(storyRoot);
                 Map<String, LocalDate> storyDates = storyParser.findStateChangeDates();

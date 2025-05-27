@@ -10,23 +10,24 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ActivityFetcher {
-    JsonNode GetActivity(String workItemId) throws IOException, InterruptedException {
-        String baseUrl = PropertyFetcher.getProperty("v1.url");
-        String accessToken = PropertyFetcher.getProperty("v1.token");
+    private final HttpClient client;
+
+    ActivityFetcher(HttpClient client) {
+        this.client = client;
+    }
+
+    JsonNode getActivity(String workItemId, String baseUrl, String accessToken) throws IOException, InterruptedException {
         String urlString = baseUrl + "/api/ActivityStream/" + workItemId;
 
-        HttpResponse<String> response;
-        try (HttpClient client = HttpClient.newHttpClient()) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(urlString))
+                .header("Authorization", "Bearer " + accessToken)
+                .header("Accept", "application/json")
+                .GET()
+                .build();
 
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(urlString))
-                    .header("Authorization", "Bearer " + accessToken)
-                    .header("Accept", "application/json")
-                    .GET()
-                    .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        }
         String body = response.body();
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readTree(body);
