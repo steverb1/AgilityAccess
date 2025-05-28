@@ -25,7 +25,7 @@ public class StoryFetcher {
         for (String teamOid : teamOidToTeamName.keySet()) {
             List<String> storyIds = getStoriesForTeam(teamOid);
 
-            ActivityFetcher activityFetcher = new ActivityFetcher(HttpClient.newHttpClient());
+            ActivityFetcher activityFetcher = new ActivityFetcher(new HttpClientWrapper());
 
             Float storyPoints = null;
             String teamName = "";

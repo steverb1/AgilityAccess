@@ -5,14 +5,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ActivityFetcher {
-    private final HttpClient client;
+    private final ForHttpClientCalls client;
 
-    ActivityFetcher(HttpClient client) {
+    ActivityFetcher(ForHttpClientCalls client) {
         this.client = client;
     }
 
