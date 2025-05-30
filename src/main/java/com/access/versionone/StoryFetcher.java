@@ -32,7 +32,7 @@ public class StoryFetcher {
             String teamName = "";
 
             for (String storyId : storyIds) {
-                JsonNode storyRoot = activityFetcher.GetActivity(storyId);
+                JsonNode storyRoot = activityFetcher.getActivity(storyId, PropertyFetcher.getProperty("v1.url"), PropertyFetcher.getProperty("v1.token"));
 
                 StoryParser storyParser = new StoryParser(storyRoot);
                 Map<String, LocalDate> storyDates = storyParser.findStateChangeDates();

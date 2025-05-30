@@ -16,9 +16,7 @@ public class ActivityFetcher {
         this.httpClient = httpClient;
     }
 
-    JsonNode GetActivity(String workItemId) throws IOException, InterruptedException {
-        String baseUrl = PropertyFetcher.getProperty("v1.url");
-        String accessToken = PropertyFetcher.getProperty("v1.token");
+    JsonNode getActivity(String workItemId, String baseUrl, String accessToken) throws IOException, InterruptedException {
         String urlString = baseUrl + "/api/ActivityStream/" + workItemId;
 
         HttpResponse<String> response;
