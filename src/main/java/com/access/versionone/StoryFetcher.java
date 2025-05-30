@@ -18,13 +18,15 @@ import java.util.List;
 import java.util.Map;
 
 public class StoryFetcher {
+    ForHttpClientCalls httpClient = new HttpClientWrapper();
+
     List<StoryHistory> getStoryHistories(Map<String, String> teamOidToTeamName) throws V1Exception, IOException, InterruptedException {
         List<StoryHistory> histories = new ArrayList<>();
 
         for (String teamOid : teamOidToTeamName.keySet()) {
             List<String> storyIds = getStoriesForTeam(teamOid);
 
-            ActivityFetcher activityFetcher = new ActivityFetcher();
+            ActivityFetcher activityFetcher = new ActivityFetcher(httpClient);
 
             Float storyPoints = null;
             String teamName = "";
