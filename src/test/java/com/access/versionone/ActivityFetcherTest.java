@@ -23,13 +23,13 @@ public class ActivityFetcherTest {
     @Test
     void getActivity_Stub() throws IOException, InterruptedException {
         HttpClientStub httpClient = new HttpClientStub();
-        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient);
+        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);;
         String storyId = "Story:123";
         String urlString = baseUrl + "/api/ActivityStream/" + storyId;
 
         String body = "[{},{}]";
         httpClient.setBody(body);
-        JsonNode storyRoot = activityFetcher.getActivity(storyId, baseUrl, accessToken);
+        JsonNode storyRoot = activityFetcher.getActivity(storyId);
 
         assertThat(storyRoot.toString()).isEqualTo(body);
         assertThat(httpClient.lastRequest.uri().toString()).isEqualTo(urlString);
@@ -62,9 +62,9 @@ public class ActivityFetcherTest {
         };
 
         when(mockClient.send(request, HttpResponse.BodyHandlers.ofString())).thenReturn(response);
-        ActivityFetcher activityFetcher = new ActivityFetcher(mockClient);
+        ActivityFetcher activityFetcher = new ActivityFetcher(mockClient, baseUrl, accessToken);
 
-        JsonNode storyRoot = activityFetcher.getActivity(storyId, baseUrl, accessToken);
+        JsonNode storyRoot = activityFetcher.getActivity(storyId);
         assertThat(storyRoot.toString()).isEqualTo(body);
     }
 }

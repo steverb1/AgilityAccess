@@ -26,13 +26,13 @@ public class StoryFetcher {
         for (String teamOid : teamOidToTeamName.keySet()) {
             List<String> storyIds = getStoriesForTeam(teamOid);
 
-            ActivityFetcher activityFetcher = new ActivityFetcher(httpClient);
+            ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, PropertyFetcher.getProperty("v1.url"), PropertyFetcher.getProperty("v1.token"));
 
             Float storyPoints = null;
             String teamName = "";
 
             for (String storyId : storyIds) {
-                JsonNode storyRoot = activityFetcher.getActivity(storyId, PropertyFetcher.getProperty("v1.url"), PropertyFetcher.getProperty("v1.token"));
+                JsonNode storyRoot = activityFetcher.getActivity(storyId);
 
                 StoryParser storyParser = new StoryParser(storyRoot);
                 Map<String, LocalDate> storyDates = storyParser.findStateChangeDates();
