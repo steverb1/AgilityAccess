@@ -22,11 +22,10 @@ public class StoryFetcher {
 
     List<StoryHistory> getStoryHistories(Map<String, String> teamOidToTeamName) throws V1Exception, IOException, InterruptedException {
         List<StoryHistory> histories = new ArrayList<>();
+        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, PropertyFetcher.getProperty("v1.url"), PropertyFetcher.getProperty("v1.token"));
 
         for (String teamOid : teamOidToTeamName.keySet()) {
             List<String> storyIds = getStoriesForTeam(teamOid);
-
-            ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, PropertyFetcher.getProperty("v1.url"), PropertyFetcher.getProperty("v1.token"));
 
             Float storyPoints = null;
             String teamName = "";
@@ -48,6 +47,7 @@ public class StoryFetcher {
                 histories.add(storyHistory);
             }
         }
+
         return histories;
     }
 

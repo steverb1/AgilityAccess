@@ -23,7 +23,7 @@ public class ActivityFetcherTest {
     @Test
     void getActivity_Stub() throws IOException, InterruptedException {
         HttpClientStub httpClient = new HttpClientStub();
-        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);;
+        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
         String storyId = "Story:123";
         String urlString = baseUrl + "/api/ActivityStream/" + storyId;
 
