@@ -7,12 +7,33 @@ import com.versionone.apiclient.filters.FilterTerm;
 import com.versionone.apiclient.interfaces.IAssetType;
 import com.versionone.apiclient.interfaces.IAttributeDefinition;
 import com.versionone.apiclient.services.QueryResult;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.*;
 
 public class TeamFetcher {
-    Map<String, String> getTeamsToProcess() throws IOException, V1Exception {
+    private final ForHttpClientCalls httpClient;
+    private final String accessToken;
+    private final String baseUrl;
+
+    public TeamFetcher(ForHttpClientCalls httpClient, String baseUrl, String accessToken) {
+        this.httpClient = httpClient;
+        this.baseUrl = baseUrl;
+        this.accessToken = accessToken;
+    }
+
+    public TeamFetcher() throws IOException {
+        this(new HttpClientWrapper(),
+             PropertyFetcher.getProperty("v1.url"),
+             PropertyFetcher.getProperty("v1.token"));
+    }
+
+    Map<String, String> getTeamsToProcess() throws IOException, V1Exception, InterruptedException {
         Map<String, String> teamOidToTeamName;
         String scopeOid = PropertyFetcher.getProperty("v1.planningLevel");
 
@@ -32,21 +53,25 @@ public class TeamFetcher {
         return teamOidToTeamName;
     }
 
-    private String getTeamName(String teamOidString) throws V1Exception, IOException {
-        Connector connector = new Connector();
-        V1Connector v1Connector = connector.buildV1Connector();
-        MetaModel metaModel = new MetaModel(v1Connector);
-        Services services = new Services(v1Connector);
+    String getTeamName(String teamOidString) throws IOException, InterruptedException {
+        String urlString = String.format("%s/rest-1.v1/Data/Team?where=ID='%s'&sel=Name", baseUrl, teamOidString);
 
-        Oid teamOid = Oid.fromToken(teamOidString, metaModel);
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(urlString))
+                .header("Authorization", "Bearer " + accessToken)
+                .header("Accept", "application/json")
+                .GET()
+                .build();
 
-        Query query = new Query(teamOid);
-        query.getSelection().add(metaModel.getAttributeDefinition("Team.Name"));
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-        QueryResult result = services.retrieve(query);
-        Asset teamAsset = result.getAssets()[0];
-
-        return teamAsset.getAttribute(metaModel.getAttributeDefinition("Team.Name")).getValue().toString();
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode root = mapper.readTree(response.body());
+        JsonNode assets = root.get("Assets");
+        if (assets != null && !assets.isEmpty()) {
+            return assets.get(0).get("Attributes").get("Name").get("value").asText();
+        }
+        throw new IOException("Team not found: " + teamOidString);
     }
 
     private Map<String, String> getTeamsForScope(String scope) throws V1Exception, IOException {
