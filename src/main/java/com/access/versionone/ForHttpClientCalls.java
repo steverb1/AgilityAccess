@@ -5,7 +5,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public interface ForHttpClientCalls {
-    public abstract <T> HttpResponse<T>
+    <T> HttpResponse<T>
     send(HttpRequest request, HttpResponse.BodyHandler<T> responseBodyHandler)
             throws IOException, InterruptedException;
 }

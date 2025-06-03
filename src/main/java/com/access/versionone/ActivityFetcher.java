@@ -2,8 +2,6 @@ package com.access.versionone;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URI;
@@ -44,10 +42,12 @@ public class ActivityFetcher {
         return mapper.readTree(body);
     }
 
-    public List<String> getStoriesForTeam(String teamOid, String fromClosedDate) throws Exception {
-        String filter = String.format("ClosedDate>'%s';Team='%s'", fromClosedDate, teamOid);
-        String encodedFilter = URLEncoder.encode(filter, StandardCharsets.UTF_8);
-        String fullUrl = baseUrl + "?where=" + encodedFilter;
+    public List<String> getStoriesForTeam(String teamOid, String fromClosedDate) throws IOException, InterruptedException {
+        String fullDate = fromClosedDate + "T00:00:00Z";
+        String whereClause = String.format("ClosedDate>'%s';Team='%s'", fullDate, teamOid);
+        String encodedWhere = URLEncoder.encode(whereClause, StandardCharsets.UTF_8);
+
+        String fullUrl = String.format("%s/rest-1.v1/Data/Story?sel=ID&where=%s", baseUrl, encodedWhere);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(fullUrl))
@@ -58,14 +58,15 @@ public class ActivityFetcher {
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-        JSONObject json = new JSONObject(response.body());
-        JSONArray assets = json.getJSONArray("Assets");
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode root = mapper.readTree(response.body());
+
+        JsonNode assets = root.get("Assets");
 
         List<String> stories = new ArrayList<>();
-        for (int i = 0; i < assets.length(); i++) {
-            JSONObject asset = assets.getJSONObject(i);
-            String oid = asset.getString("id");
-            stories.add(oid);
+        for (JsonNode asset : assets) {
+            String storyId = asset.get("id").asText();
+            stories.add(storyId);
         }
 
         return stories;

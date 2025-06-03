@@ -10,6 +10,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,7 +23,7 @@ public class ActivityFetcherTest {
 
     @Test
     void getActivity_Stub() throws IOException, InterruptedException {
-        HttpClientStub httpClient = new HttpClientStub();
+        HttpClientSpy httpClient = new HttpClientSpy();
         ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
         String storyId = "Story:123";
         String urlString = baseUrl + "/api/ActivityStream/" + storyId;
@@ -34,6 +35,30 @@ public class ActivityFetcherTest {
         assertThat(storyRoot.toString()).isEqualTo(body);
         assertThat(httpClient.lastRequest.uri().toString()).isEqualTo(urlString);
         assertThat(httpClient.lastRequest.headers().map().toString()).isEqualTo("{Accept=[application/json], Authorization=[Bearer " + accessToken + "]}");
+    }
+
+    @Test
+    void getStoriesForTeam() throws IOException, InterruptedException {
+        HttpClientSpy httpClient = new HttpClientSpy();
+        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
+        String teamOid = "Team:123";
+        String fromClosedDate = "2025-05-01";
+
+        String body = """
+                {
+                  "Assets": [
+                    {
+                      "id": "Story:1234"
+                    }
+                  ]
+                }
+                """;
+        httpClient.setBody(body);
+
+        List<String> storyIds = activityFetcher.getStoriesForTeam(teamOid, fromClosedDate);
+
+        assertThat(storyIds.size()).isEqualTo(1);
+        assertThat(httpClient.lastRequest.uri().toString()).isEqualTo("https://example.com/rest-1.v1/Data/Story?sel=ID&where=ClosedDate%3E%272025-05-01T00%3A00%3A00Z%27%3BTeam%3D%27Team%3A123%27");
     }
 
     @Test
