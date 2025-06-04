@@ -68,10 +68,13 @@ public class TeamFetcher {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(response.body());
         JsonNode assets = root.get("Assets");
-        if (assets != null && !assets.isEmpty()) {
-            return assets.get(0).get("Attributes").get("Name").get("value").asText();
+
+        String teamName = "";
+        if (!assets.isEmpty()) {
+            teamName = assets.get(0).get("Attributes").get("Name").get("value").asText();
         }
-        throw new IOException("Team not found: " + teamOidString);
+
+        return teamName;
     }
 
     private Map<String, String> getTeamsForScope(String scope) throws V1Exception, IOException {
