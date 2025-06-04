@@ -92,4 +92,47 @@ public class ActivityFetcherTest {
         JsonNode storyRoot = activityFetcher.getActivity(storyId);
         assertThat(storyRoot.toString()).isEqualTo(body);
     }
+
+    @Test
+    void getTeamName_WhenTeamExists_ReturnsTeamName() throws Exception {
+        HttpClientSpy httpClient = new HttpClientSpy();
+        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
+        String expectedTeamName = "Test Team";
+        httpClient.setBody(
+            """
+            {
+                "Assets": [{
+                    "Attributes": {
+                        "Name": {
+                            "value": "Test Team"
+                        }
+                    }
+                }]
+            }"""
+        );
+
+        String actualTeamName = activityFetcher.getTeamName("Team:1234");
+
+        assertThat(actualTeamName).isEqualTo(expectedTeamName);
+        assertThat(httpClient.lastRequest.uri().toString())
+                .isEqualTo(baseUrl + "/rest-1.v1/Data/Team?where=ID='Team:1234'&sel=Name");
+        assertThat(httpClient.lastRequest.headers().firstValue("Authorization"))
+                .hasValueSatisfying(auth -> assertThat(auth).contains(accessToken));
+    }
+
+    @Test
+    void getTeamName_WhenTeamNotFound_ReturnsEmptyString() throws IOException, InterruptedException {
+        HttpClientSpy httpClient = new HttpClientSpy();
+        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
+        httpClient.setBody(
+            """
+            {
+                "Assets": []
+            }"""
+        );
+
+        String teamName = activityFetcher.getTeamName("Team:9999");
+
+        assertThat(teamName).isEmpty();
+    }
 }

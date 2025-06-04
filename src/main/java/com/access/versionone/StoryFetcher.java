@@ -1,7 +1,6 @@
 package com.access.versionone;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.versionone.apiclient.exceptions.V1Exception;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -12,7 +11,7 @@ import java.util.Map;
 public class StoryFetcher {
     ForHttpClientCalls httpClient = new HttpClientWrapper();
 
-    List<StoryHistory> getStoryHistories(Map<String, String> teamOidToTeamName) throws V1Exception, IOException, InterruptedException {
+    List<StoryHistory> getStoryHistories(Map<String, String> teamOidToTeamName) throws IOException, InterruptedException {
         List<StoryHistory> histories = new ArrayList<>();
         ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, PropertyFetcher.getProperty("v1.url"), PropertyFetcher.getProperty("v1.token"));
 

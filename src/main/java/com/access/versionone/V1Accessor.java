@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class V1Accessor {
     public static void main(String[] args) throws V1Exception, IOException, InterruptedException {
-        Map<String, String> teamOidToTeamName = new TeamFetcher().getTeamsToProcess();
+        Map<String, String> teamOidToTeamName = new ActivityFetcher().getTeamsToProcess();
 
         List<StoryHistory> histories = new StoryFetcher().getStoryHistories(teamOidToTeamName);
 
