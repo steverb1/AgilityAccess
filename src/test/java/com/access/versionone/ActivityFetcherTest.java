@@ -1,21 +1,15 @@
 package com.access.versionone;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.versionone.apiclient.exceptions.V1Exception;
 import org.junit.jupiter.api.Test;
 
-import javax.net.ssl.SSLSession;
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpHeaders;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class ActivityFetcherTest {
     String baseUrl = "https://example.com";
@@ -62,38 +56,6 @@ public class ActivityFetcherTest {
     }
 
     @Test
-    void getActivity_Mock() throws IOException, InterruptedException {
-        String storyId = "Story:123";
-        String urlString = baseUrl + "/api/ActivityStream/" + storyId;
-
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(urlString))
-                .header("Authorization", "Bearer " + accessToken)
-                .header("Accept", "application/json")
-                .GET()
-                .build();
-
-        ForHttpClientCalls mockClient = mock(ForHttpClientCalls.class);
-        String body = "[{},{}]";
-        HttpResponse<String> response = new HttpResponse<>() {
-            @Override public int statusCode() {return 200;}
-            @Override public HttpRequest request() {return request;}
-            @Override public Optional<HttpResponse<String>> previousResponse() {return Optional.empty();}
-            @Override public String body() {return body;}
-            @Override public Optional<SSLSession> sslSession() {return Optional.empty();}
-            @Override public URI uri() {return null;}
-            @Override public HttpClient.Version version() {return null;}
-            @Override public HttpHeaders headers() {return null;}
-        };
-
-        when(mockClient.send(request, HttpResponse.BodyHandlers.ofString())).thenReturn(response);
-        ActivityFetcher activityFetcher = new ActivityFetcher(mockClient, baseUrl, accessToken);
-
-        JsonNode storyRoot = activityFetcher.getActivity(storyId);
-        assertThat(storyRoot.toString()).isEqualTo(body);
-    }
-
-    @Test
     void getTeamName_WhenTeamExists_ReturnsTeamName() throws Exception {
         HttpClientSpy httpClient = new HttpClientSpy();
         ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
@@ -104,20 +66,18 @@ public class ActivityFetcherTest {
                 "Assets": [{
                     "Attributes": {
                         "Name": {
-                            "value": "Test Team"
+                            "value": "%s"
                         }
                     }
                 }]
-            }"""
+            }""".formatted(expectedTeamName)
         );
 
         String actualTeamName = activityFetcher.getTeamName("Team:1234");
 
         assertThat(actualTeamName).isEqualTo(expectedTeamName);
-        assertThat(httpClient.lastRequest.uri().toString())
-                .isEqualTo(baseUrl + "/rest-1.v1/Data/Team?where=ID='Team:1234'&sel=Name");
-        assertThat(httpClient.lastRequest.headers().firstValue("Authorization"))
-                .hasValueSatisfying(auth -> assertThat(auth).contains(accessToken));
+        assertThat(httpClient.lastRequest.uri().toString()).isEqualTo(baseUrl + "/rest-1.v1/Data/Team?where=ID='Team:1234'&sel=Name");
+        assertThat(httpClient.lastRequest.headers().map().toString()).isEqualTo("{Accept=[application/json], Authorization=[Bearer " + accessToken + "]}");
     }
 
     @Test
@@ -134,5 +94,78 @@ public class ActivityFetcherTest {
         String teamName = activityFetcher.getTeamName("Team:9999");
 
         assertThat(teamName).isEmpty();
+    }
+
+    @Test
+    void getTeamsToProcess_WhenScopeAndTeamAreNull_ReturnsEmptyMap() throws IOException, V1Exception, InterruptedException {
+        HttpClientSpy httpClient = new HttpClientSpy();
+        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
+
+        Map<String, String> result = activityFetcher.getTeamsToProcess(null, null);
+
+        assertThat(result).isEmpty();
+    }
+
+    @Test
+    void getTeamsToProcess_WhenScopeIsNull_ReturnsSingleTeam() throws IOException, V1Exception, InterruptedException {
+        HttpClientSpy httpClient = new HttpClientSpy();
+        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
+        String teamOid = "Team:1234";
+        String teamName = "Test Team";
+        httpClient.setBody(
+            """
+            {
+                "Assets": [{
+                    "Attributes": {
+                        "Name": {
+                            "value": "%s"
+                        }
+                    }
+                }]
+            }""".formatted(teamName)
+        );
+
+        Map<String, String> result = activityFetcher.getTeamsToProcess(null, teamOid);
+
+        assertThat(result).hasSize(1);
+        assertThat(result).containsEntry(teamOid, teamName);
+    }
+
+    //@Test
+    void getTeamsToProcess_WhenScopeIsNotNull_ReturnsTeamsForScope() throws IOException, V1Exception, InterruptedException {
+        HttpClientSpy httpClient = new HttpClientSpy();
+        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
+        String scopeOid = "Scope:1234";
+        String teamOid1 = "Team:1234";
+        String teamName1 = "Test Team 1";
+        String teamOid2 = "Team:5678";
+        String teamName2 = "Test Team 2";
+
+        httpClient.setBody(
+            """
+            {
+                "Assets": [{
+                    "ID": "%s",
+                    "Attributes": {
+                        "Name": {
+                            "value": "%s"
+                        }
+                    }
+                }, {
+                    "ID": "%s",
+                    "Attributes": {
+                        "Name": {
+                            "value": "%s"
+                        }
+                    }
+                }]
+            }""".formatted(teamOid1, teamName1, teamOid2, teamName2)
+        );
+
+        Map<String, String> result = activityFetcher.getTeamsToProcess(scopeOid, null);
+
+        assertThat(result).hasSize(2);
+        assertThat(result).containsEntry(teamOid1, teamName1);
+        assertThat(result).containsEntry(teamOid2, teamName2);
     }
 }

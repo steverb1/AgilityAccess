@@ -87,12 +87,10 @@ public class ActivityFetcher {
         return stories;
     }
 
-    Map<String, String> getTeamsToProcess() throws IOException, V1Exception, InterruptedException {
+    Map<String, String> getTeamsToProcess(String scopeOid, String teamOid) throws IOException, V1Exception, InterruptedException {
         Map<String, String> teamOidToTeamName;
-        String scopeOid = PropertyFetcher.getProperty("v1.planningLevel");
 
         if (scopeOid == null  || scopeOid.isEmpty()) {
-            String teamOid = PropertyFetcher.getProperty("v1.team");
             if (teamOid == null || teamOid.isEmpty()) {
                 return new HashMap<>();
             }
