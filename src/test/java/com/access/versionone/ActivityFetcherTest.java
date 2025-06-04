@@ -131,7 +131,7 @@ public class ActivityFetcherTest {
         assertThat(result).containsEntry(teamOid, teamName);
     }
 
-    //@Test
+    @Test
     void getTeamsToProcess_WhenScopeIsNotNull_ReturnsTeamsForScope() throws IOException, V1Exception, InterruptedException {
         HttpClientSpy httpClient = new HttpClientSpy();
         ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
@@ -145,14 +145,14 @@ public class ActivityFetcherTest {
             """
             {
                 "Assets": [{
-                    "ID": "%s",
+                    "id": "%s",
                     "Attributes": {
                         "Name": {
                             "value": "%s"
                         }
                     }
                 }, {
-                    "ID": "%s",
+                    "id": "%s",
                     "Attributes": {
                         "Name": {
                             "value": "%s"
