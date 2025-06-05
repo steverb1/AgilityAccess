@@ -1,7 +1,6 @@
 package com.access.versionone;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.versionone.apiclient.exceptions.V1Exception;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -91,14 +90,14 @@ public class ActivityFetcherTest {
     }
 
     @Test
-    void getTeamsToProcess_WhenScopeAndTeamAreNull_ReturnsEmptyMap() throws IOException, V1Exception, InterruptedException {
+    void getTeamsToProcess_WhenScopeAndTeamAreNull_ReturnsEmptyMap() throws IOException, InterruptedException {
         Map<String, String> result = activityFetcher.getTeamsToProcess(null, null);
 
         assertThat(result).isEmpty();
     }
 
     @Test
-    void getTeamsToProcess_WhenScopeIsNull_ReturnsSingleTeam() throws IOException, V1Exception, InterruptedException {
+    void getTeamsToProcess_WhenScopeIsNull_ReturnsSingleTeam() throws IOException, InterruptedException {
         String teamOid = "Team:1234";
         String teamName = "Test Team";
         httpClient.addBody(
@@ -121,7 +120,7 @@ public class ActivityFetcherTest {
     }
 
     @Test
-    void getTeamsToProcess_WhenScopeIsNotNull_ReturnsTeamsForScope() throws IOException, V1Exception, InterruptedException {
+    void getTeamsToProcess_WhenScopeIsNotNull_ReturnsTeamsForScope() throws IOException, InterruptedException {
         String scopeOid = "Scope:1234";
         String teamOid1 = "Team:1234";
         String teamName1 = "Test Team 1";
@@ -242,13 +241,14 @@ public class ActivityFetcherTest {
 
         assertThat(storyHistories.size()).isEqualTo(2);
 
-        assertThat(storyHistories.get(0).storyId()).isEqualTo("Story:9849");
-        assertThat(storyHistories.get(0).stateDates().size()).isEqualTo(3);
-        assertThat(storyHistories.get(0).stateDates().get("Ready for Build")).isEqualTo("2025-06-03");
-        assertThat(storyHistories.get(0).stateDates().get("Build")).isEqualTo("2025-06-04");
-        assertThat(storyHistories.get(0).stateDates().get("Done")).isEqualTo("2025-06-05");
-        assertThat(storyHistories.get(0).storyPoints()).isNull();
-        assertThat(storyHistories.get(0).teamName()).isEqualTo("Team Bob");
+        StoryHistory storyHistory1 = storyHistories.getFirst();
+        assertThat(storyHistory1.storyId()).isEqualTo("Story:9849");
+        assertThat(storyHistory1.stateDates().size()).isEqualTo(3);
+        assertThat(storyHistory1.stateDates().get("Ready for Build")).isEqualTo("2025-06-03");
+        assertThat(storyHistory1.stateDates().get("Build")).isEqualTo("2025-06-04");
+        assertThat(storyHistory1.stateDates().get("Done")).isEqualTo("2025-06-05");
+        assertThat(storyHistory1.storyPoints()).isNull();
+        assertThat(storyHistory1.teamName()).isEqualTo("Team Bob");
 
         assertThat(storyHistories.get(1).storyPoints()).isEqualTo(5.0f);
     }
