@@ -5,6 +5,7 @@ import com.versionone.apiclient.exceptions.V1Exception;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class ActivityFetcherTest {
         String urlString = baseUrl + "/api/ActivityStream/" + storyId;
 
         String body = "[{},{}]";
-        httpClient.setBody(body);
+        httpClient.addBody(body);
         JsonNode storyRoot = activityFetcher.getActivity(storyId);
 
         assertThat(storyRoot.toString()).isEqualTo(body);
@@ -44,7 +45,7 @@ public class ActivityFetcherTest {
                   ]
                 }
                 """;
-        httpClient.setBody(body);
+        httpClient.addBody(body);
 
         List<String> storyIds = activityFetcher.getStoriesForTeam(teamOid, fromClosedDate);
 
@@ -55,7 +56,7 @@ public class ActivityFetcherTest {
     @Test
     void getTeamName_WhenTeamExists_ReturnsTeamName() throws Exception {
         String expectedTeamName = "Test Team";
-        httpClient.setBody(
+        httpClient.addBody(
             """
             {
                 "Assets": [{
@@ -77,7 +78,7 @@ public class ActivityFetcherTest {
 
     @Test
     void getTeamName_WhenTeamNotFound_ReturnsEmptyString() throws IOException, InterruptedException {
-        httpClient.setBody(
+        httpClient.addBody(
             """
             {
                 "Assets": []
@@ -100,7 +101,7 @@ public class ActivityFetcherTest {
     void getTeamsToProcess_WhenScopeIsNull_ReturnsSingleTeam() throws IOException, V1Exception, InterruptedException {
         String teamOid = "Team:1234";
         String teamName = "Test Team";
-        httpClient.setBody(
+        httpClient.addBody(
             """
             {
                 "Assets": [{
@@ -127,7 +128,7 @@ public class ActivityFetcherTest {
         String teamOid2 = "Team:5678";
         String teamName2 = "Test Team 2";
 
-        httpClient.setBody(
+        httpClient.addBody(
             """
             {
                 "Assets": [{
@@ -156,7 +157,99 @@ public class ActivityFetcherTest {
     }
     
     @Test
-    void getStoryHistories() {
-        
+    void getStoryHistories() throws IOException, InterruptedException {
+        Map<String, String> teamOidToTeamName = new HashMap<>();
+        teamOidToTeamName.put("Team:1234", "Team Bob");
+
+        httpClient.addBody(
+            """
+            {
+              "_type" : "Assets",
+              "total" : 2,
+              "Assets" : [ {
+                "id" : "Story:9849"
+              }, {
+                "id" : "Story:9852"
+              } ]
+            }
+            """
+        );
+
+        httpClient.addBody(
+            """
+            [ {
+             "body" : {
+               "time" : "2025-06-03T16:18:13.177Z",
+               "target" : [ {
+                 "name" : "Status",
+                 "newValue" : "Ready for Build"
+               } ]
+             }
+           }, {
+             "body" : {
+               "time" : "2025-06-04T16:18:13.177Z",
+               "target" : [ {
+                 "name" : "Status",
+                 "newValue" : "Build"
+               } ]
+             }
+           }, {
+             "body" : {
+               "time" : "2025-06-05T16:18:13.177Z",
+               "target" : [ {
+                 "name" : "Status",
+                 "newValue" : "Done"
+               } ]
+             }
+           } ]
+           """
+        );
+
+        httpClient.addBody(
+                """
+                [ {
+                 "body" : {
+                   "time" : "2025-08-03T16:18:13.177Z",
+                   "target" : [ {
+                     "name" : "Status",
+                     "newValue" : "Ready for Build"
+                   },{
+                     "name" : "Estimate",
+                     "newValue" : "5.00"
+                   } ]
+                 }
+               }, {
+                 "body" : {
+                   "time" : "2025-08-04T16:18:13.177Z",
+                   "target" : [ {
+                     "name" : "Status",
+                     "newValue" : "Build"
+                   } ]
+                 }
+               }, {
+                 "body" : {
+                   "time" : "2025-08-05T16:18:13.177Z",
+                   "target" : [ {
+                     "name" : "Status",
+                     "newValue" : "Done"
+                   } ]
+                 }
+               } ]
+               """
+        );
+
+        List<StoryHistory> storyHistories = activityFetcher.getStoryHistories(teamOidToTeamName, true, true);
+
+        assertThat(storyHistories.size()).isEqualTo(2);
+
+        assertThat(storyHistories.get(0).storyId()).isEqualTo("Story:9849");
+        assertThat(storyHistories.get(0).stateDates().size()).isEqualTo(3);
+        assertThat(storyHistories.get(0).stateDates().get("Ready for Build")).isEqualTo("2025-06-03");
+        assertThat(storyHistories.get(0).stateDates().get("Build")).isEqualTo("2025-06-04");
+        assertThat(storyHistories.get(0).stateDates().get("Done")).isEqualTo("2025-06-05");
+        assertThat(storyHistories.get(0).storyPoints()).isNull();
+        assertThat(storyHistories.get(0).teamName()).isEqualTo("Team Bob");
+
+        assertThat(storyHistories.get(1).storyPoints()).isEqualTo(5.0f);
     }
 }
