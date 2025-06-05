@@ -17,16 +17,10 @@ public class ActivityFetcher {
     private final String accessToken;
     String baseUrl;
 
-    ActivityFetcher(ForHttpClientCalls httpClient, String baseUrl1, String accessToken) throws IOException {
+    ActivityFetcher(ForHttpClientCalls httpClient, String baseUrl1, String accessToken) {
         this.httpClient = httpClient;
         this.baseUrl = baseUrl1;
         this.accessToken = accessToken;
-    }
-
-    public ActivityFetcher() throws IOException {
-        this(new HttpClientWrapper(),
-             PropertyFetcher.getProperty("v1.url"),
-             PropertyFetcher.getProperty("v1.token"));
     }
 
     JsonNode getActivity(String workItemId) throws IOException, InterruptedException {
