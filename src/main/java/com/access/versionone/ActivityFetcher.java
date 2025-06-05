@@ -74,19 +74,7 @@ public class ActivityFetcher {
     JsonNode getActivity(String workItemId) throws IOException, InterruptedException {
         String urlString = baseUrl + "/api/ActivityStream/" + workItemId;
 
-        HttpResponse<String> response;
-
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(urlString))
-                .header("Authorization", "Bearer " + accessToken)
-                .header("Accept", "application/json")
-                .GET()
-                .build();
-
-        response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        String body = response.body();
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readTree(body);
+        return sendHttpRequest(urlString);
     }
 
     List<String> getStoriesForTeam(String teamOid, String fromClosedDate) throws IOException, InterruptedException {
