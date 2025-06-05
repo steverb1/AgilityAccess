@@ -43,12 +43,9 @@ public class ActivityFetcher {
 
     public List<String> getStoriesForTeam(String teamOid, String fromClosedDate) throws IOException, InterruptedException {
         String fullDate = fromClosedDate + "T00:00:00Z";
-        String whereClause = String.format("ClosedDate>'%s';Team='%s'", fullDate, teamOid);
-        String encodedWhere = URLEncoder.encode(whereClause, StandardCharsets.UTF_8);
+        String urlString = String.format("%s/rest-1.v1/Data/Story?sel=ID&where=ClosedDate%%3E'%s';Team='%s'", baseUrl, fullDate, teamOid);
 
-        String fullUrl = String.format("%s/rest-1.v1/Data/Story?sel=ID&where=%s", baseUrl, encodedWhere);
-
-        JsonNode root = sendHttpRequest(fullUrl);
+        JsonNode root = sendHttpRequest(urlString);
 
         JsonNode assets = root.get("Assets");
 
