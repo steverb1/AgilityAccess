@@ -13,11 +13,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ActivityFetcherTest {
     String baseUrl = "https://example.com";
     String accessToken = "exampleAccessToken";
+    private final HttpClientSpy httpClient = new HttpClientSpy();
+    private final ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
 
     @Test
-    void getActivity_Stub() throws IOException, InterruptedException {
-        HttpClientSpy httpClient = new HttpClientSpy();
-        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
+    void getActivity() throws IOException, InterruptedException {
         String storyId = "Story:123";
         String urlString = baseUrl + "/api/ActivityStream/" + storyId;
 
@@ -32,8 +32,6 @@ public class ActivityFetcherTest {
 
     @Test
     void getStoriesForTeam() throws IOException, InterruptedException {
-        HttpClientSpy httpClient = new HttpClientSpy();
-        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
         String teamOid = "Team:123";
         String fromClosedDate = "2025-05-01";
 
@@ -56,8 +54,6 @@ public class ActivityFetcherTest {
 
     @Test
     void getTeamName_WhenTeamExists_ReturnsTeamName() throws Exception {
-        HttpClientSpy httpClient = new HttpClientSpy();
-        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
         String expectedTeamName = "Test Team";
         httpClient.setBody(
             """
@@ -81,8 +77,6 @@ public class ActivityFetcherTest {
 
     @Test
     void getTeamName_WhenTeamNotFound_ReturnsEmptyString() throws IOException, InterruptedException {
-        HttpClientSpy httpClient = new HttpClientSpy();
-        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
         httpClient.setBody(
             """
             {
@@ -97,9 +91,6 @@ public class ActivityFetcherTest {
 
     @Test
     void getTeamsToProcess_WhenScopeAndTeamAreNull_ReturnsEmptyMap() throws IOException, V1Exception, InterruptedException {
-        HttpClientSpy httpClient = new HttpClientSpy();
-        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
-
         Map<String, String> result = activityFetcher.getTeamsToProcess(null, null);
 
         assertThat(result).isEmpty();
@@ -107,8 +98,6 @@ public class ActivityFetcherTest {
 
     @Test
     void getTeamsToProcess_WhenScopeIsNull_ReturnsSingleTeam() throws IOException, V1Exception, InterruptedException {
-        HttpClientSpy httpClient = new HttpClientSpy();
-        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
         String teamOid = "Team:1234";
         String teamName = "Test Team";
         httpClient.setBody(
@@ -132,8 +121,6 @@ public class ActivityFetcherTest {
 
     @Test
     void getTeamsToProcess_WhenScopeIsNotNull_ReturnsTeamsForScope() throws IOException, V1Exception, InterruptedException {
-        HttpClientSpy httpClient = new HttpClientSpy();
-        ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
         String scopeOid = "Scope:1234";
         String teamOid1 = "Team:1234";
         String teamName1 = "Test Team 1";
@@ -166,5 +153,10 @@ public class ActivityFetcherTest {
         assertThat(result).hasSize(2);
         assertThat(result).containsEntry(teamOid1, teamName1);
         assertThat(result).containsEntry(teamOid2, teamName2);
+    }
+    
+    @Test
+    void getStoryHistories() {
+        
     }
 }
