@@ -51,7 +51,7 @@ public class ActivityFetcherTest {
         List<String> storyIds = activityFetcher.getStoriesForTeam(teamOid, fromClosedDate);
 
         assertThat(storyIds.size()).isEqualTo(1);
-        assertThat(httpClient.lastRequest.uri().toString()).isEqualTo("https://example.com/rest-1.v1/Data/Story?sel=ID&where=ClosedDate%3E%272025-05-01T00%3A00%3A00Z%27%3BTeam%3D%27Team%3A123%27");
+        assertThat(httpClient.lastRequest.uri().toString()).isEqualTo("https://example.com/rest-1.v1/Data/Story?sel=ID&where=ClosedDate%3E'2025-05-01T00:00:00Z';Team='Team:123'");
     }
 
     @Test
