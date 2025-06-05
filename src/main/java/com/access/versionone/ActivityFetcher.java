@@ -40,7 +40,8 @@ public class ActivityFetcher {
         return teamOidToTeamName;
     }
 
-    public List<StoryHistory> getStoryHistories(Map<String, String> teamOidToTeamName) throws IOException, InterruptedException {
+    public List<StoryHistory> getStoryHistories(Map<String, String> teamOidToTeamName,
+                                                boolean includeStoryPoints, boolean includeTeamName) throws IOException, InterruptedException {
         List<StoryHistory> histories = new ArrayList<>();
 
         for (String teamOid : teamOidToTeamName.keySet()) {
@@ -55,10 +56,10 @@ public class ActivityFetcher {
                 StoryParser storyParser = new StoryParser(storyRoot);
                 Map<String, LocalDate> storyDates = storyParser.findStateChangeDates();
 
-                if (PropertyFetcher.getProperty("includeStoryPoints").equals("true")) {
+                if (includeStoryPoints) {
                     storyPoints = storyParser.findStoryEstimate();
                 }
-                if (PropertyFetcher.getProperty("includeTeamName").equals("true")) {
+                if (includeTeamName) {
                     teamName = teamOidToTeamName.get(teamOid);
                 }
 
@@ -66,6 +67,7 @@ public class ActivityFetcher {
                 histories.add(storyHistory);
             }
         }
+
         return histories;
     }
 

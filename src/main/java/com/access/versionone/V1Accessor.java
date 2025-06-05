@@ -14,7 +14,8 @@ public class V1Accessor {
                 PropertyFetcher.getProperty("v1.planningLevel"),
                 PropertyFetcher.getProperty("v1.team"));
 
-        List<StoryHistory> histories = activityFetcher.getStoryHistories(teamOidToTeamName);
+        List<StoryHistory> histories = activityFetcher.getStoryHistories(teamOidToTeamName,
+                PropertyFetcher.getProperty("includeStoryPoints").equals("true"), PropertyFetcher.getProperty("includeTeamName").equals("true"));
 
         new OutputGenerator(new FileWriter("stories.csv")).createCsvFile(histories,
                 PropertyFetcher.getProperty("includeStoryPoints").equals("true"),
