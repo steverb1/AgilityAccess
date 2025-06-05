@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalDate;
 import java.util.*;
 
 public class ActivityFetcher {
@@ -19,6 +20,53 @@ public class ActivityFetcher {
         this.httpClient = httpClient;
         this.baseUrl = baseUrl1;
         this.accessToken = accessToken;
+    }
+
+    public Map<String, String> getTeamsToProcess(String scopeOid, String teamOid) throws IOException, InterruptedException {
+        Map<String, String> teamOidToTeamName;
+
+        if (scopeOid == null  || scopeOid.isEmpty()) {
+            if (teamOid == null || teamOid.isEmpty()) {
+                return new HashMap<>();
+            }
+
+            String teamName = getTeamName(teamOid);
+            teamOidToTeamName = new HashMap<>();
+            teamOidToTeamName.put(teamOid, teamName);
+        }
+        else {
+            teamOidToTeamName = getTeamsForScope(scopeOid);
+        }
+        return teamOidToTeamName;
+    }
+
+    public List<StoryHistory> getStoryHistories(Map<String, String> teamOidToTeamName) throws IOException, InterruptedException {
+        List<StoryHistory> histories = new ArrayList<>();
+
+        for (String teamOid : teamOidToTeamName.keySet()) {
+            List<String> storyIds = getStoriesForTeam(teamOid, PropertyFetcher.getProperty("fromClosedDate"));
+
+            Float storyPoints = null;
+            String teamName = "";
+
+            for (String storyId : storyIds) {
+                JsonNode storyRoot = getActivity(storyId);
+
+                StoryParser storyParser = new StoryParser(storyRoot);
+                Map<String, LocalDate> storyDates = storyParser.findStateChangeDates();
+
+                if (PropertyFetcher.getProperty("includeStoryPoints").equals("true")) {
+                    storyPoints = storyParser.findStoryEstimate();
+                }
+                if (PropertyFetcher.getProperty("includeTeamName").equals("true")) {
+                    teamName = teamOidToTeamName.get(teamOid);
+                }
+
+                StoryHistory storyHistory = new StoryHistory(storyId, storyDates, storyPoints, teamName);
+                histories.add(storyHistory);
+            }
+        }
+        return histories;
     }
 
     JsonNode getActivity(String workItemId) throws IOException, InterruptedException {
@@ -39,7 +87,7 @@ public class ActivityFetcher {
         return mapper.readTree(body);
     }
 
-    public List<String> getStoriesForTeam(String teamOid, String fromClosedDate) throws IOException, InterruptedException {
+    List<String> getStoriesForTeam(String teamOid, String fromClosedDate) throws IOException, InterruptedException {
         String fullDate = fromClosedDate + "T00:00:00Z";
         String urlString = String.format("%s/rest-1.v1/Data/Story?sel=ID&where=ClosedDate%%3E'%s';Team='%s'", baseUrl, fullDate, teamOid);
 
@@ -54,24 +102,6 @@ public class ActivityFetcher {
         }
 
         return stories;
-    }
-
-    Map<String, String> getTeamsToProcess(String scopeOid, String teamOid) throws IOException, InterruptedException {
-        Map<String, String> teamOidToTeamName;
-
-        if (scopeOid == null  || scopeOid.isEmpty()) {
-            if (teamOid == null || teamOid.isEmpty()) {
-                return new HashMap<>();
-            }
-
-            String teamName = getTeamName(teamOid);
-            teamOidToTeamName = new HashMap<>();
-            teamOidToTeamName.put(teamOid, teamName);
-        }
-        else {
-            teamOidToTeamName = getTeamsForScope(scopeOid);
-        }
-        return teamOidToTeamName;
     }
 
     String getTeamName(String teamOidString) throws IOException, InterruptedException {

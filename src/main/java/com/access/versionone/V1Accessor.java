@@ -1,19 +1,20 @@
 package com.access.versionone;
 
-import com.versionone.apiclient.exceptions.V1Exception;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 public class V1Accessor {
-    public static void main(String[] args) throws V1Exception, IOException, InterruptedException {
-        Map<String, String> teamOidToTeamName = new ActivityFetcher(new HttpClientWrapper(),
-                PropertyFetcher.getProperty("v1.url"), PropertyFetcher.getProperty("v1.token")).
-                getTeamsToProcess(PropertyFetcher.getProperty("v1.planningLevel"), PropertyFetcher.getProperty("v1.team"));
+    public static void main(String[] args) throws IOException, InterruptedException {
+        ActivityFetcher activityFetcher = new ActivityFetcher(new HttpClientWrapper(),
+                PropertyFetcher.getProperty("v1.url"), PropertyFetcher.getProperty("v1.token"));
 
-        List<StoryHistory> histories = new StoryFetcher().getStoryHistories(teamOidToTeamName);
+        Map<String, String> teamOidToTeamName = activityFetcher.getTeamsToProcess(
+                PropertyFetcher.getProperty("v1.planningLevel"),
+                PropertyFetcher.getProperty("v1.team"));
+
+        List<StoryHistory> histories = activityFetcher.getStoryHistories(teamOidToTeamName);
 
         new OutputGenerator(new FileWriter("stories.csv")).createCsvFile(histories,
                 PropertyFetcher.getProperty("includeStoryPoints").equals("true"),
