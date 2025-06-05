@@ -14,9 +14,7 @@ public class ActivityFetcherIT {
                 "https://www16.v1host.com/api-examples",
                 PropertyFetcher.getProperty("v1.token"));
 
-        Map<String, String> teamsToProcess = activityFetcher.getTeamsToProcess(
-                PropertyFetcher.getProperty("v1.planningLevel"),
-                PropertyFetcher.getProperty("v1.team"));
+        Map<String, String> teamsToProcess = activityFetcher.getTeamsToProcess("Scope:1005", null);
 
         assertThat(!teamsToProcess.isEmpty());
     }
