@@ -7,6 +7,11 @@ import java.util.Map;
 
 public class V1Accessor {
     public static void main(String[] args) throws IOException, InterruptedException {
+        // TODO: create map of properties to pass to extractStoryActivity
+        extractStoryActivity();
+    }
+
+    public static void extractStoryActivity() throws IOException, InterruptedException {
         ActivityFetcher activityFetcher = new ActivityFetcher(new HttpClientWrapper(),
                 PropertyFetcher.getProperty("v1.url"), PropertyFetcher.getProperty("v1.token"));
 
@@ -15,10 +20,14 @@ public class V1Accessor {
                 PropertyFetcher.getProperty("v1.team"));
 
         List<StoryHistory> histories = activityFetcher.getStoryHistories(teamOidToTeamName,
-                PropertyFetcher.getProperty("includeStoryPoints").equals("true"), PropertyFetcher.getProperty("includeTeamName").equals("true"));
+                PropertyFetcher.getProperty("includeStoryPoints").equals("true"),
+                PropertyFetcher.getProperty("includeTeamName").equals("true"),
+                PropertyFetcher.getProperty("fromClosedDate"),
+                PropertyFetcher.getProperty("states"));
 
         new OutputGenerator(new FileWriter("stories.csv")).createCsvFile(histories,
                 PropertyFetcher.getProperty("includeStoryPoints").equals("true"),
-                PropertyFetcher.getProperty("includeTeamName").equals("true"));
+                PropertyFetcher.getProperty("includeTeamName").equals("true"),
+                PropertyFetcher.getProperty("states"));
     }
 }

@@ -41,11 +41,11 @@ public class ActivityFetcher {
     }
 
     public List<StoryHistory> getStoryHistories(Map<String, String> teamOidToTeamName,
-                                                boolean includeStoryPoints, boolean includeTeamName) throws IOException, InterruptedException {
+                                                boolean includeStoryPoints, boolean includeTeamName, String fromClosedDate, String configuredStates) throws IOException, InterruptedException {
         List<StoryHistory> histories = new ArrayList<>();
 
         for (String teamOid : teamOidToTeamName.keySet()) {
-            List<String> storyIds = getStoriesForTeam(teamOid, PropertyFetcher.getProperty("fromClosedDate"));
+            List<String> storyIds = getStoriesForTeam(teamOid, fromClosedDate);
 
             Float storyPoints = null;
             String teamName = "";
@@ -53,7 +53,7 @@ public class ActivityFetcher {
             for (String storyId : storyIds) {
                 JsonNode storyRoot = getActivity(storyId);
 
-                StoryParser storyParser = new StoryParser(storyRoot);
+                StoryParser storyParser = new StoryParser(storyRoot, configuredStates);
                 Map<String, LocalDate> storyDates = storyParser.findStateChangeDates();
 
                 if (includeStoryPoints) {

@@ -20,7 +20,7 @@ public class StoryParserTest {
             root = mapper.readTree(inputSteam);
         }
 
-        StoryParser parser = new StoryParser(root);
+        StoryParser parser = new StoryParser(root, "Ready for Build, Build, Done");
         Map<String, LocalDate> history = parser.findStateChangeDates();
 
         assertThat(history.get("Ready for Build")).isEqualTo("2025-04-03");
@@ -36,7 +36,7 @@ public class StoryParserTest {
             root = mapper.readTree(inputSteam);
         }
 
-        StoryParser parser = new StoryParser(root);
+        StoryParser parser = new StoryParser(root, "Ready for Build, Build, Done");
         float estimate = parser.findStoryEstimate();
 
         assertThat(estimate).isEqualTo(5.0f);
@@ -46,7 +46,7 @@ public class StoryParserTest {
     void findingStoryEstimate_WhenNoEstimate_ReturnsNull() throws IOException {
         JsonNode root = JsonNodeFactory.instance.objectNode();
 
-        StoryParser parser = new StoryParser(root);
+        StoryParser parser = new StoryParser(root, "Ready for Build, Build, Done");
         Float estimate = parser.findStoryEstimate();
 
         assertThat(estimate).isEqualTo(null);

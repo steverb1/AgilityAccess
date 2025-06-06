@@ -22,7 +22,7 @@ public class OutputGeneratorTest {
         StoryHistory record1 = new StoryHistory("Story:123", stateDates, 3.0f, "Team Bob");
         histories.add(record1);
 
-        generator.createCsvFile(histories, true, true);
+        generator.createCsvFile(histories, true, true, "Ready for Build, Build, Done");
 
         assertThat(writer.toString()).isEqualTo("""
                 ID, Ready for Build, Build, Done, Points, Team
@@ -38,7 +38,7 @@ public class OutputGeneratorTest {
         stateDates.put("Done", LocalDate.of(2025, 5, 27));
         histories.add(record1);
 
-        generator.createCsvFile(histories, false, false);
+        generator.createCsvFile(histories, false, false, "Ready for Build, Build, Done");
 
         assertThat(writer.toString()).isEqualTo("""
                 ID, Ready for Build, Build, Done
@@ -54,7 +54,7 @@ public class OutputGeneratorTest {
         StoryHistory record1 = new StoryHistory("Story:123", stateDates, 3.0f, "Team Bob");
         histories.add(record1);
 
-        generator.createCsvFile(histories, true, true);
+        generator.createCsvFile(histories, true, true, "Ready for Build, Build, Done");
 
         assertThat(writer.toString()).isEqualTo("""
                 ID, Ready for Build, Build, Done, Points, Team

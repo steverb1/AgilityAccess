@@ -15,9 +15,9 @@ public class OutputGenerator {
         this.output = output;
     }
 
-    void createCsvFile(List<StoryHistory> stories, boolean includePoints, boolean includeTeamName) {
+    void createCsvFile(List<StoryHistory> stories, boolean includePoints, boolean includeTeamName, String states) {
         try (BufferedWriter writer = new BufferedWriter(output)) {
-            String headerLine = "ID, " + PropertyFetcher.getProperty("states");
+            String headerLine = "ID, " + states;
             if (includePoints) {
                 headerLine += ", " + "Points";
             }

@@ -237,7 +237,8 @@ public class ActivityFetcherTest {
                """
         );
 
-        List<StoryHistory> storyHistories = activityFetcher.getStoryHistories(teamOidToTeamName, true, true);
+        List<StoryHistory> storyHistories = activityFetcher.getStoryHistories(teamOidToTeamName, true, true,
+                "2025-01-01", "Ready for Build, Build, Done");
 
         assertThat(storyHistories.size()).isEqualTo(2);
 

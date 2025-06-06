@@ -2,7 +2,6 @@ package com.access.versionone;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -11,9 +10,8 @@ public class StoryParser {
     List<String> states;
     Map<String, LocalDate> stateDates = new LinkedHashMap<>();
 
-    public StoryParser(JsonNode root) throws IOException {
+    public StoryParser(JsonNode root, String configuredStates) {
         this.root = root;
-        String configuredStates = PropertyFetcher.getProperty("states");
         states = Arrays.stream(configuredStates.split(","))
                 .map(String::trim)
                 .toList();

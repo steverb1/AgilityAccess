@@ -18,7 +18,7 @@ public class ActivityFetcherIT {
         Map<String, String> teamsToProcess = activityFetcher.getTeamsToProcess("Scope:1005", null);
         assertThat(teamsToProcess).isNotEmpty();
 
-        List<StoryHistory> storyHistories = activityFetcher.getStoryHistories(teamsToProcess, true, true);
+        List<StoryHistory> storyHistories = activityFetcher.getStoryHistories(teamsToProcess, true, true, PropertyFetcher.getProperty("fromClosedDate"), PropertyFetcher.getProperty("states"));
         assertThat(storyHistories).isNotEmpty();
     }
 
@@ -31,7 +31,7 @@ public class ActivityFetcherIT {
         Map<String, String> teamsToProcess = activityFetcher.getTeamsToProcess(null, "Team:1889");
         assertThat(teamsToProcess).isNotEmpty();
 
-        List<StoryHistory> storyHistories = activityFetcher.getStoryHistories(teamsToProcess, true, true);
+        List<StoryHistory> storyHistories = activityFetcher.getStoryHistories(teamsToProcess, true, true, PropertyFetcher.getProperty("fromClosedDate"), PropertyFetcher.getProperty("states"));
         assertThat(storyHistories).isNotEmpty();
     }
 }
