@@ -2,6 +2,7 @@ package com.access.versionone;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
@@ -22,7 +23,7 @@ public class StoryParserTest {
         StoryParser parser = new StoryParser(root);
         Map<String, LocalDate> history = parser.findStateChangeDates();
 
-        assertThat(history.get("Ready for Build")).isEqualTo("2025-04-06");
+        assertThat(history.get("Ready for Build")).isEqualTo("2025-04-03");
         assertThat(history.get("Build")).isEqualTo("2025-06-01");
         assertThat(history.get("Done")).isEqualTo("2025-06-10");
     }
@@ -39,5 +40,15 @@ public class StoryParserTest {
         float estimate = parser.findStoryEstimate();
 
         assertThat(estimate).isEqualTo(5.0f);
+    }
+
+    @Test
+    void findingStoryEstimate_WhenNoEstimate_ReturnsNull() throws IOException {
+        JsonNode root = JsonNodeFactory.instance.objectNode();
+
+        StoryParser parser = new StoryParser(root);
+        Float estimate = parser.findStoryEstimate();
+
+        assertThat(estimate).isEqualTo(null);
     }
 }
