@@ -7,3 +7,23 @@ fromClosedDate=2025-01-01  (will find stories closed after this date)
 states=Ready for Build, Build, Done (states you want captured)
 includeStoryPoints=<false or true>  Whether to include story points in the output.
 includeTeamName=<false or true>  Whether to include the team name in the output.
+
+
+Useful commands:
+
+# Start server
+java -jar target/AgilityAccess-1.0-SNAPSHOT.jar
+
+# Check health
+curl http://localhost:7070/health
+
+# Run the extraction
+curl -X POST http://localhost:7070/api/stories/extract \
+  -H "Content-Type: application/json" \
+  -d '{"v1.token": "<insert token here>",
+  "v1.url": "https://www16.v1host.com/api-examples",
+  "v1.planningLevel": "Scope:1005",
+  "fromClosedDate": "2025-01-01",
+  "states": "Ready for Build, Build, Done",
+  "includeStoryPoints": "true",
+  "includeTeamName": "true"}'
