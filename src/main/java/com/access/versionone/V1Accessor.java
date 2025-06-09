@@ -4,30 +4,31 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 public class V1Accessor {
     public static void main(String[] args) throws IOException, InterruptedException {
-        // TODO: create map of properties to pass to extractStoryActivity
-        extractStoryActivity();
+        Map<String, String> properties = PropertyFetcher.getPropertyMap();
+        extractStoryActivity(properties);
     }
 
-    public static void extractStoryActivity() throws IOException, InterruptedException {
+    public static void extractStoryActivity(Map<String, String> properties) throws IOException, InterruptedException {
         ActivityFetcher activityFetcher = new ActivityFetcher(new HttpClientWrapper(),
-                PropertyFetcher.getProperty("v1.url"), PropertyFetcher.getProperty("v1.token"));
+                properties.get("v1.url"), properties.get("v1.token"));
 
         Map<String, String> teamOidToTeamName = activityFetcher.getTeamsToProcess(
-                PropertyFetcher.getProperty("v1.planningLevel"),
-                PropertyFetcher.getProperty("v1.team"));
+                properties.get("v1.planningLevel"),
+                properties.get("v1.team"));
 
         List<StoryHistory> histories = activityFetcher.getStoryHistories(teamOidToTeamName,
-                PropertyFetcher.getProperty("includeStoryPoints").equals("true"),
-                PropertyFetcher.getProperty("includeTeamName").equals("true"),
-                PropertyFetcher.getProperty("fromClosedDate"),
-                PropertyFetcher.getProperty("states"));
+                properties.get("includeStoryPoints").equals("true"),
+                properties.get("includeTeamName").equals("true"),
+                properties.get("fromClosedDate"),
+                properties.get("states"));
 
         new OutputGenerator(new FileWriter("stories.csv")).createCsvFile(histories,
-                PropertyFetcher.getProperty("includeStoryPoints").equals("true"),
-                PropertyFetcher.getProperty("includeTeamName").equals("true"),
-                PropertyFetcher.getProperty("states"));
+                properties.get("includeStoryPoints").equals("true"),
+                properties.get("includeTeamName").equals("true"),
+                properties.get("states"));
     }
 }
