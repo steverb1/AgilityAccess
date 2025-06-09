@@ -2,6 +2,8 @@ package com.access.versionone;
 
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+
+import java.util.List;
 import java.util.Map;
 
 public class ApiServer {
@@ -12,7 +14,13 @@ public class ApiServer {
     }
 
     public void start() {
-        Javalin app = Javalin.create()
+        Javalin app = Javalin.create(config -> {
+            config.plugins.enableCors(cors -> {
+                cors.add(it -> {
+                    it.anyHost();
+                });
+            });
+        })
             .get("/health", ctx -> ctx.result("Server is running"))
             .post("/api/stories/extract", this::extractStoryActivity)
             .start(port);
