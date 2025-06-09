@@ -4,7 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 public class V1Accessor {
     public static void main(String[] args) throws IOException, InterruptedException {
