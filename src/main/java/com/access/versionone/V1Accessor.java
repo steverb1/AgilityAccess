@@ -8,8 +8,7 @@ import java.util.Properties;
 
 public class V1Accessor {
     public static void main(String[] args) throws IOException, InterruptedException {
-        Map<String, String> properties = PropertyFetcher.getPropertyMap();
-        extractStoryActivity(properties);
+        extractStoryActivity(PropertyFetcher.getPropertyMap());
     }
 
     public static void extractStoryActivity(Map<String, String> properties) throws IOException, InterruptedException {
