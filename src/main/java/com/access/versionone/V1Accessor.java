@@ -7,10 +7,13 @@ import java.util.Map;
 
 public class V1Accessor {
     public static void main(String[] args) throws IOException, InterruptedException {
-        extractStoryActivity(PropertyFetcher.getPropertyMap());
+        String csvContent = extractStoryActivity(PropertyFetcher.getPropertyMap());
+        try (FileWriter writer = new FileWriter("stories.csv")) {
+            writer.write(csvContent);
+        }
     }
 
-    public static void extractStoryActivity(Map<String, String> properties) throws IOException, InterruptedException {
+    public static String extractStoryActivity(Map<String, String> properties) throws IOException, InterruptedException {
         ActivityFetcher activityFetcher = new ActivityFetcher(new HttpClientWrapper(),
                 properties.get("v1.url"), properties.get("v1.token"));
 
@@ -24,7 +27,7 @@ public class V1Accessor {
                 properties.get("fromClosedDate"),
                 properties.get("states"));
 
-        new OutputGenerator(new FileWriter("stories.csv")).createCsvFile(histories,
+        return new OutputGenerator().createCsvContent(histories,
                 properties.get("includeStoryPoints").equals("true"),
                 properties.get("includeTeamName").equals("true"),
                 properties.get("states"));
