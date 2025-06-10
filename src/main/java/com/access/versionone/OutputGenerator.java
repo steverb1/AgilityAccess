@@ -36,7 +36,7 @@ public class OutputGenerator {
 
             if (includePoints) {
                 builder.append(",");
-                builder.append(story.storyPoints());
+                builder.append(story.storyPoints() != null ? story.storyPoints() : "");
             }
 
             if (includeTeamName) {

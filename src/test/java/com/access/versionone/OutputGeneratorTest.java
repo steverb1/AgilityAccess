@@ -18,12 +18,15 @@ public class OutputGeneratorTest {
         stateDates.put("Build", LocalDate.of(2025, 5, 25));
         stateDates.put("Done", LocalDate.of(2025, 5, 27));
         StoryHistory record1 = new StoryHistory("Story:123", stateDates, 3.0f, "Team Bob");
+        StoryHistory record2 = new StoryHistory("Story:456", stateDates, null, "Team Bob");
         histories.add(record1);
+        histories.add(record2);
 
         String result = generator.createCsvContent(histories, true, true, "Ready for Build, Build, Done");
         assertThat(result).isEqualTo("""
                 ID, Ready for Build, Build, Done, Points, Team
                 123,2025-05-23,2025-05-25,2025-05-27,3.0,Team Bob
+                456,2025-05-23,2025-05-25,2025-05-27,,Team Bob
                 """);
     }
 
