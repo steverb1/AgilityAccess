@@ -11,6 +11,9 @@ includeTeamName=<false or true>  Whether to include the team name in the output.
 
 Useful commands:
 
+# Rebuild jar
+mvn clean package
+
 # Start server
 java -jar target/AgilityAccess-1.0-SNAPSHOT.jar
 
