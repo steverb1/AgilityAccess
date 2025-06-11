@@ -23,7 +23,7 @@ public class ApiServer {
         })
             .get("/health", ctx -> ctx.result("Server is running"))
             .post("/api/stories/extract", this::extractStoryActivity)
-            .start(port);
+            .start("0.0.0.0", port);
     }
 
     private void extractStoryActivity(Context ctx) {

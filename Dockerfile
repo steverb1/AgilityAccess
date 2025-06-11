@@ -13,4 +13,4 @@ WORKDIR /app
 COPY --from=builder /app/target/AgilityAccess-1.0-SNAPSHOT.jar app.jar
 ENV PORT=8080
 EXPOSE ${PORT}
-ENTRYPOINT ["java", "-Dport=${PORT}", "-jar", "app.jar"]
+CMD java -Dport=$PORT -jar app.jar
