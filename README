@@ -31,3 +31,13 @@ curl -X POST http://localhost:7070/api/stories/extract \
   "states": "Ready for Build, Build, Done",
   "includeStoryPoints": "true",
   "includeTeamName": "true"}'
+
+# Build and run with Docker:
+# First build the jar
+mvn clean package
+
+# Build docker image
+docker build -t agility-access .
+
+# Run docker container
+docker run -p 7070:7070 agility-access
