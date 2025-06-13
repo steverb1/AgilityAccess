@@ -34,4 +34,16 @@ public class ActivityFetcherIT {
         List<StoryHistory> storyHistories = activityFetcher.getStoryHistories(teamsToProcess, true, true, PropertyFetcher.getProperty("fromClosedDate"), PropertyFetcher.getProperty("states"));
         assertThat(storyHistories).isNotEmpty();
     }
+
+    @Test
+    void getStoriesForTeam_NoClosedDate() throws IOException, InterruptedException {
+        ActivityFetcher activityFetcher = new ActivityFetcher(new HttpClientWrapper(),
+                "https://www16.v1host.com/api-examples",
+                PropertyFetcher.getProperty("v1.token"));
+
+        String teamOid = "Team:1889";
+        List<String> storyIds = activityFetcher.getStoriesForTeam(teamOid, "");
+
+        assertThat(storyIds).isNotEmpty();
+    }
 }

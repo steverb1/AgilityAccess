@@ -53,6 +53,28 @@ public class ActivityFetcherTest {
     }
 
     @Test
+    void getStoriesForTeam_NoClosedDate() throws IOException, InterruptedException {
+        String teamOid = "Team:123";
+        String fromClosedDate = "";
+
+        String body = """
+                {
+                  "Assets": [
+                    {
+                      "id": "Story:1234"
+                    }
+                  ]
+                }
+                """;
+        httpClient.addBody(body);
+
+        List<String> storyIds = activityFetcher.getStoriesForTeam(teamOid, fromClosedDate);
+
+        assertThat(storyIds.size()).isEqualTo(1);
+        assertThat(httpClient.lastRequest.uri().toString()).isEqualTo("https://example.com/rest-1.v1/Data/Story?sel=ID&where=Team='Team:123'");
+    }
+
+    @Test
     void getTeamName_WhenTeamExists_ReturnsTeamName() throws Exception {
         String expectedTeamName = "Test Team";
         httpClient.addBody(
