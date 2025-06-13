@@ -41,3 +41,12 @@ docker build -t agility-access .
 
 # Run docker container
 docker run -p 7070:7070 agility-access
+
+# Run jar from command line:
+java -jar target/agility-access-cli-1.0-SNAPSHOT.jar --v1.token=<insert token> \
+  --v1.url=https://www16.v1host.com/api-examples \
+  --v1.planningLevel=Scope:1005 \
+  --fromClosedDate=2025-01-01 \
+  --states="Ready for Build, Build, Done" \
+  --includeStoryPoints=true \
+  --includeTeamName=true

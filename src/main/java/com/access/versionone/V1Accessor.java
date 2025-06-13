@@ -2,12 +2,22 @@ package com.access.versionone;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class V1Accessor {
     public static void main(String[] args) throws IOException, InterruptedException {
-        String csvContent = extractStoryActivity(PropertyFetcher.getPropertyMap());
+        Map<String, String> properties;
+
+        if (args.length == 7) {
+            properties = parseArgs(args);
+        }
+        else {
+            properties = PropertyFetcher.getPropertyMap();
+        }
+        String csvContent = extractStoryActivity(properties);
+
         try (FileWriter writer = new FileWriter("stories.csv")) {
             writer.write(csvContent);
         }
@@ -31,5 +41,20 @@ public class V1Accessor {
                 properties.get("includeStoryPoints").equals("true"),
                 properties.get("includeTeamName").equals("true"),
                 properties.get("states"));
+    }
+
+    static Map<String, String> parseArgs(String[] args) {
+        Map<String, String> map = new HashMap<>();
+        for (String line : args) {
+            String trimmed = line.substring(2);
+            int eq = trimmed.indexOf('=');
+            String key = trimmed.substring(0, eq).trim();
+            String value = trimmed.substring(eq + 1).trim();
+            if (value.startsWith("\"") && value.endsWith("\"") && value.length() >= 2) {
+                value = value.substring(1, value.length() - 1);
+            }
+            map.put(key, value);
+        }
+        return map;
     }
 }
