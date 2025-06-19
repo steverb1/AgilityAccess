@@ -10,7 +10,7 @@ public class V1Accessor {
     public static void main(String[] args) throws IOException, InterruptedException {
         Map<String, String> properties;
 
-        if (args.length == 7) {
+        if (args.length >= 4) {
             properties = parseArgs(args);
         }
         else {
@@ -54,6 +54,16 @@ public class V1Accessor {
                 value = value.substring(1, value.length() - 1);
             }
             map.put(key, value);
+        }
+
+        if (!map.containsKey("fromClosedDate")) {
+            map.put("fromClosedDate", "");
+        }
+        if (!map.containsKey("includeStoryPoints")) {
+            map.put("includeStoryPoints", "false");
+        }
+        if (!map.containsKey("includeTeamName")) {
+            map.put("includeTeamName", "false");
         }
         return map;
     }
