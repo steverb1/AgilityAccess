@@ -20,3 +20,4 @@ target/
 
 config.properties
 stories.csv
+*.dmg

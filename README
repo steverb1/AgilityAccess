@@ -50,3 +50,6 @@ java -jar target/agility-access-cli-1.0-SNAPSHOT.jar --v1.token=<insert token> \
   --states="Ready for Build, Build, Done" \
   --includeStoryPoints=true \
   --includeTeamName=true
+
+# To build a standalone app for MacOS:
+jpackage --input target --main-jar agility-access-cli-1.0-SNAPSHOT.jar --main-class com.access.versionone.V1Accessor --name AgilityAccess
