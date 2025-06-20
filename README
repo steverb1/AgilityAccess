@@ -16,7 +16,7 @@ Useful commands:
 mvn clean package
 
 # Start server
-java -jar target/AgilityAccess-1.0-SNAPSHOT.jar
+java -jar target/agility-access-server-1.0-SNAPSHOT.jar
 
 # Check health
 curl http://localhost:7070/health
