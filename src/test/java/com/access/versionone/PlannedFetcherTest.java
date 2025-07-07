@@ -1,20 +1,42 @@
 package com.access.versionone;
 
 import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlannedFetcherTest {
-    @Test
-    void test1() throws IOException, InterruptedException {
-        PlannedFetcher plannedFetcher = new PlannedFetcher(new HttpClientWrapper(),
-                "https://www16.v1host.com/api-examples",
-                PropertyFetcher.getProperty("v1.token"));
+    String baseUrl = "https://example.com";
+    String accessToken = "exampleAccessToken";
+    HttpClientSpy httpClient = new HttpClientSpy();
+    PlannedFetcher plannedFetcher = new PlannedFetcher(httpClient, baseUrl, accessToken);
 
-        List<String> stories = plannedFetcher.getPlannedStories("Timebox:1050");
-        assertThat(stories.size()).isEqualTo(6);
+    @Test
+    void returnsStoriesFromStubbedHttpClient() throws IOException, InterruptedException {
+        String timeboxOid = "Timebox:1050";
+        String timeboxResponse =
+            """
+            {"Assets":[
+                    {"Attributes":{"BeginDate":{"value":"2025-07-01"}}}
+                ]}
+            """;
+        httpClient.addBody(timeboxResponse);
+
+        String storiesResponse =
+            """
+            {"Assets":[
+                {"Attributes":{"Name":{"value":"Story 1"}}},
+                {"Attributes":{"Name":{"value":"Story 2"}}},
+                {"Attributes":{"Name":{"value":"Story 3"}}}
+            ]}
+            """;
+        httpClient.addBody(storiesResponse);
+
+        List<String> stories = plannedFetcher.getPlannedStories(timeboxOid);
+        assertThat(stories).containsExactly(
+                "Story 1", "Story 2", "Story 3"
+        );
+        assertThat(httpClient.lastRequest.uri().toString())
+            .isEqualTo("https://example.com/rest-1.v1/Data/PrimaryWorkitem?where=Timebox='Timebox:1050'&asof=2025-07-02");
     }
 }

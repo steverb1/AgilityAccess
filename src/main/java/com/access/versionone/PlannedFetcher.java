@@ -23,9 +23,6 @@ public class PlannedFetcher {
 
     public List<String> getPlannedStories(String timeboxOid) throws IOException, InterruptedException {
         String iterationStartDate = getIterationStartDate(timeboxOid);
-        if (timeboxOid == null || timeboxOid.isEmpty() || iterationStartDate == null) {
-            return new ArrayList<>();
-        }
 
         String urlString = String.format("%s/rest-1.v1/Data/PrimaryWorkitem?where=Timebox='%s'&asof=%s", baseUrl, timeboxOid, iterationStartDate);
         JsonNode root = sendHttpRequest(urlString);
@@ -56,7 +53,9 @@ public class PlannedFetcher {
             if (attributes != null) {
                 JsonNode startDateNode = attributes.get("BeginDate");
                 if (startDateNode != null && startDateNode.has("value")) {
-                    return startDateNode.get("value").asText();
+                    String iterationStartDate = startDateNode.get("value").asText();
+                    java.time.LocalDate date = java.time.LocalDate.parse(iterationStartDate);
+                    return date.plusDays(1).toString();
                 }
             }
         }
