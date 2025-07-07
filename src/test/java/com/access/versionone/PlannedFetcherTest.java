@@ -25,18 +25,18 @@ public class PlannedFetcherTest {
         String storiesResponse =
             """
             {"Assets":[
-                {"Attributes":{"Name":{"value":"Story 1"}}},
-                {"Attributes":{"Name":{"value":"Story 2"}}},
-                {"Attributes":{"Name":{"value":"Story 3"}}}
+                {"Attributes":{"Name":{"value":"Story 1"},"ID":{"value":{"idref":"Story:111"}}}},
+                {"Attributes":{"Name":{"value":"Story 2"},"ID":{"value":{"idref":"Story:222"}}}},
+                {"Attributes":{"Name":{"value":"Story 3"},"ID":{"value":{"idref":"Story:333"}}}}
             ]}
             """;
         httpClient.addBody(storiesResponse);
 
         List<String> stories = plannedFetcher.getPlannedStories(timeboxOid);
         assertThat(stories).containsExactly(
-                "Story 1", "Story 2", "Story 3"
+                "Story 1 (Story:111)", "Story 2 (Story:222)", "Story 3 (Story:333)"
         );
         assertThat(httpClient.lastRequest.uri().toString())
-            .isEqualTo("https://example.com/rest-1.v1/Data/PrimaryWorkitem?where=Timebox='Timebox:1050'&asof=2025-07-02");
+            .isEqualTo("https://example.com/rest-1.v1/Data/PrimaryWorkitem?where=Timebox='Timebox:1050'&asof=2025-07-02&sel=Name,ID");
     }
 }

@@ -23,22 +23,32 @@ public class PlannedFetcher {
 
     public List<String> getPlannedStories(String timeboxOid) throws IOException, InterruptedException {
         String iterationStartDate = getIterationStartDate(timeboxOid);
-
-        String urlString = String.format("%s/rest-1.v1/Data/PrimaryWorkitem?where=Timebox='%s'&asof=%s", baseUrl, timeboxOid, iterationStartDate);
+        String urlString = String.format("%s/rest-1.v1/Data/PrimaryWorkitem?where=Timebox='%s'&asof=%s&sel=Name,ID",
+                baseUrl, timeboxOid, iterationStartDate);
         JsonNode root = sendHttpRequest(urlString);
-        List<String> stories = new ArrayList<>();
         JsonNode assets = root.get("Assets");
+        List<String> stories = new ArrayList<>();
         if (assets != null && assets.isArray()) {
             for (JsonNode asset : assets) {
                 JsonNode attributes = asset.get("Attributes");
+                String name = null;
+                String oid = null;
                 if (attributes != null) {
                     JsonNode nameNode = attributes.get("Name");
                     if (nameNode != null && nameNode.has("value")) {
-                        stories.add(nameNode.get("value").asText());
+                        name = nameNode.get("value").asText();
+                    }
+                    JsonNode idNode = attributes.get("ID");
+                    if (idNode != null && idNode.has("value")) {
+                        oid = idNode.get("value").get("idref").asText();
+                        String[] parts = oid.split(":");
+                        oid = parts[0] + ":" + parts[1];
                     }
                 }
+                stories.add(String.format("%s (%s)", name, oid));
             }
         }
+
         return stories;
     }
 
