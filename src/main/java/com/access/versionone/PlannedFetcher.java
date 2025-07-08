@@ -22,9 +22,9 @@ public class PlannedFetcher {
     }
 
     public List<String> getPlannedStories(String timeboxOid) throws IOException, InterruptedException {
-        String iterationStartDate = getIterationStartDate(timeboxOid);
+        String iterationActivationDate = getIterationActivationDate(timeboxOid);
         String urlString = String.format("%s/rest-1.v1/Data/PrimaryWorkitem?where=Timebox='%s'&asof=%s&sel=Name,ID",
-                baseUrl, timeboxOid, iterationStartDate);
+                baseUrl, timeboxOid, iterationActivationDate);
         JsonNode root = sendHttpRequest(urlString);
         JsonNode assets = root.get("Assets");
         List<String> stories = new ArrayList<>();
@@ -52,25 +52,23 @@ public class PlannedFetcher {
         return stories;
     }
 
-    private String getIterationStartDate(String timeboxOid) throws IOException, InterruptedException {
-        String urlString = String.format("%s/rest-1.v1/Data/Timebox?where=ID='%s'", baseUrl, timeboxOid);
-
+    String getIterationActivationDate(String timeboxOid) throws IOException, InterruptedException {
+        String urlString = String.format("%s/rest-1.v1/Hist/Timebox?where=ID='%s'&sel=ChangeDate,State", baseUrl, timeboxOid);
         JsonNode root = sendHttpRequest(urlString);
         JsonNode assets = root.get("Assets");
-        if (assets != null && assets.isArray() && assets.size() > 0) {
-            JsonNode asset = assets.get(0);
+        for (JsonNode asset : assets) {
             JsonNode attributes = asset.get("Attributes");
-            if (attributes != null) {
-                JsonNode startDateNode = attributes.get("BeginDate");
-                if (startDateNode != null && startDateNode.has("value")) {
-                    String iterationStartDate = startDateNode.get("value").asText();
-                    java.time.LocalDate date = java.time.LocalDate.parse(iterationStartDate);
-                    return date.plusDays(1).toString();
+            if (attributes.has("State.Code")) {
+                String state = attributes.get("State.Code").get("value").asText();
+                if (state.equals("ACTV")) {
+                    JsonNode activationDateNode = attributes.get("ChangeDate");
+                    if (activationDateNode != null && activationDateNode.has("value")) {
+                        return activationDateNode.get("value").asText();
+                    }
                 }
             }
         }
-
-        return null;
+        return "";
     }
 
     private JsonNode sendHttpRequest(String fullUrl) throws IOException, InterruptedException {

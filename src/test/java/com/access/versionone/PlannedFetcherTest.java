@@ -12,12 +12,12 @@ public class PlannedFetcherTest {
     PlannedFetcher plannedFetcher = new PlannedFetcher(httpClient, baseUrl, accessToken);
 
     @Test
-    void returnsStoriesFromStubbedHttpClient() throws IOException, InterruptedException {
+    void returnsPlannedStories() throws IOException, InterruptedException {
         String timeboxOid = "Timebox:1050";
         String timeboxResponse =
             """
             {"Assets":[
-                    {"Attributes":{"BeginDate":{"value":"2025-07-01"}}}
+                    {"Attributes":{"ChangeDate":{"value":"2017-03-07T05:11:17.087"},"State.Code":{"value":"ACTV"}}}
                 ]}
             """;
         httpClient.addBody(timeboxResponse);
@@ -37,6 +37,22 @@ public class PlannedFetcherTest {
                 "Story 1 (Story:111)", "Story 2 (Story:222)", "Story 3 (Story:333)"
         );
         assertThat(httpClient.lastRequest.uri().toString())
-            .isEqualTo("https://example.com/rest-1.v1/Data/PrimaryWorkitem?where=Timebox='Timebox:1050'&asof=2025-07-02&sel=Name,ID");
+            .isEqualTo("https://example.com/rest-1.v1/Data/PrimaryWorkitem?where=Timebox='Timebox:1050'&asof=2017-03-07T05:11:17.087&sel=Name,ID");
+    }
+
+    @Test
+    void returnsIterationActivationDate() throws IOException, InterruptedException {
+        String timeboxOid = "Timebox:1050";
+        String changeDateResponse =
+            """
+            {"Assets":[
+                    {"Attributes":{"ChangeDate":{"value":"2017-03-07T05:02:53.447"},"State.Code":{"value":"FUTR"}}},
+                    {"Attributes":{"ChangeDate":{"value":"2017-03-07T05:11:17.087"},"State.Code":{"value":"ACTV"}}}
+                ]}
+            """;
+        httpClient.addBody(changeDateResponse);
+
+        String activationDate = plannedFetcher.getIterationActivationDate(timeboxOid);
+        assertThat(activationDate).isEqualTo("2017-03-07T05:11:17.087");
     }
 }

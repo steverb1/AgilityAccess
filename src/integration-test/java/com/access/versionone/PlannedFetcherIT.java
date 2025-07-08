@@ -15,6 +15,16 @@ public class PlannedFetcherIT {
                 PropertyFetcher.getProperty("v1.token"));
 
         List<String> stories = plannedFetcher.getPlannedStories("Timebox:1050");
-        assertThat(stories.size()).isEqualTo(6);
+        assertThat(stories.size()).isEqualTo(3);
+    }
+
+    @Test
+    void getIterationActivationDateTime() throws IOException, InterruptedException {
+        PlannedFetcher plannedFetcher = new PlannedFetcher(new HttpClientWrapper(),
+                PropertyFetcher.getProperty("v1.url"),
+                PropertyFetcher.getProperty("v1.token"));
+
+        String startDate = plannedFetcher.getIterationActivationDate("Timebox:1050");
+        assertThat(startDate).isEqualTo("2017-03-07T05:11:17.087");
     }
 }
