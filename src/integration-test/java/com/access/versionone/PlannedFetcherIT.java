@@ -14,7 +14,7 @@ public class PlannedFetcherIT {
                 PropertyFetcher.getProperty("v1.url"),
                 PropertyFetcher.getProperty("v1.token"));
 
-        List<String> stories = plannedFetcher.getPlannedStories("Timebox:1050");
+        List<String> stories = plannedFetcher.getPlannedStories("Timebox:9857");
         assertThat(stories.size()).isEqualTo(3);
     }
 

@@ -53,20 +53,12 @@ public class PlannedFetcher {
     }
 
     String getIterationActivationDate(String timeboxOid) throws IOException, InterruptedException {
-        String urlString = String.format("%s/rest-1.v1/Hist/Timebox?where=ID='%s'&sel=ChangeDate,State", baseUrl, timeboxOid);
+        String urlString = String.format("%s/rest-1.v1/Hist/Timebox?where=ID='%s';State.Code='ACTV'&sel=ChangeDate,State", baseUrl, timeboxOid);
         JsonNode root = sendHttpRequest(urlString);
         JsonNode assets = root.get("Assets");
         for (JsonNode asset : assets) {
             JsonNode attributes = asset.get("Attributes");
-            if (attributes.has("State.Code")) {
-                String state = attributes.get("State.Code").get("value").asText();
-                if (state.equals("ACTV")) {
-                    JsonNode activationDateNode = attributes.get("ChangeDate");
-                    if (activationDateNode != null && activationDateNode.has("value")) {
-                        return activationDateNode.get("value").asText();
-                    }
-                }
-            }
+            return attributes.get("ChangeDate").get("value").asText();
         }
         return "";
     }

@@ -46,7 +46,6 @@ public class PlannedFetcherTest {
         String changeDateResponse =
             """
             {"Assets":[
-                    {"Attributes":{"ChangeDate":{"value":"2017-03-07T05:02:53.447"},"State.Code":{"value":"FUTR"}}},
                     {"Attributes":{"ChangeDate":{"value":"2017-03-07T05:11:17.087"},"State.Code":{"value":"ACTV"}}}
                 ]}
             """;
