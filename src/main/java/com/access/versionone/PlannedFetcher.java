@@ -52,6 +52,30 @@ public class PlannedFetcher {
         return stories;
     }
 
+    public List<Iteration> getAllIterationsAfterDate(String date) throws IOException, InterruptedException {
+        String whereClause = String.format("BeginDate>'%s'", date);
+        String encodedWhere = java.net.URLEncoder.encode(whereClause, java.nio.charset.StandardCharsets.UTF_8);
+        String urlString = String.format("%s/rest-1.v1/Data/Timebox?where=%s&sel=Name", baseUrl, encodedWhere);
+
+        JsonNode root = sendHttpRequest(urlString);
+        JsonNode assets = root.get("Assets");
+
+        ArrayList<Iteration> iterations = new ArrayList<>();
+
+        if (assets != null) {
+            for (JsonNode asset : assets) {
+                String oid = asset.get("id").asText();
+                JsonNode attributes = asset.get("Attributes");
+                String name = attributes.get("Name").get("value").asText();
+
+                Iteration iteration = new Iteration(name, oid);
+                iterations.add(iteration);
+            }
+        }
+
+        return iterations;
+    }
+
     String getIterationActivationDate(String timeboxOid) throws IOException, InterruptedException {
         String urlString = String.format("%s/rest-1.v1/Hist/Timebox?where=ID='%s';State.Code='ACTV'&sel=ChangeDate,State", baseUrl, timeboxOid);
         JsonNode root = sendHttpRequest(urlString);
@@ -78,3 +102,5 @@ public class PlannedFetcher {
         return mapper.readTree(response.body());
     }
 }
+
+

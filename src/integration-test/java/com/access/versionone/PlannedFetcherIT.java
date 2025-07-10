@@ -27,4 +27,14 @@ public class PlannedFetcherIT {
         String startDate = plannedFetcher.getIterationActivationDate("Timebox:1050");
         assertThat(startDate).isEqualTo("2017-03-07T05:11:17.087");
     }
+
+    @Test
+    void getAllIterationsAfterDate() throws IOException, InterruptedException {
+        PlannedFetcher plannedFetcher = new PlannedFetcher(new HttpClientWrapper(),
+                PropertyFetcher.getProperty("v1.url"),
+                PropertyFetcher.getProperty("v1.token"));
+
+        List<Iteration> iterations = plannedFetcher.getAllIterationsAfterDate("2025-01-01");
+        assertThat(iterations.size()).isGreaterThan(0);
+    }
 }

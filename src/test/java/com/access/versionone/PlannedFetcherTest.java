@@ -54,4 +54,38 @@ public class PlannedFetcherTest {
         String activationDate = plannedFetcher.getIterationActivationDate(timeboxOid);
         assertThat(activationDate).isEqualTo("2017-03-07T05:11:17.087");
     }
+
+    @Test
+    void returnsAllIterationsAfterDate() throws IOException, InterruptedException {
+        String iterationResponse =
+            """
+            {
+                "Assets": [
+                  {
+                    "id": "Timebox:1234",
+                    "Attributes": {
+                      "Name": {"value": "Sprint 42"},
+                      "StartDate": {"value": "2025-07-02"},
+                      "EndDate": {"value": "2025-07-15"}
+                    }
+                  },
+                  {
+                    "id": "Timebox:5678",
+                    "Attributes": {
+                      "Name": {"value": "Sprint 43"},
+                      "StartDate": {"value": "2025-07-02"},
+                      "EndDate": {"value": "2025-07-15"}
+                    }
+                  }
+                ]
+            }
+            """;
+        httpClient.addBody(iterationResponse);
+
+        List<Iteration> iterations = plannedFetcher.getAllIterationsAfterDate("2025-07-01");
+        assertThat(iterations).containsExactly(
+                new Iteration("Sprint 42", "Timebox:1234"),
+                new Iteration("Sprint 43", "Timebox:5678")
+        );
+    }
 }
