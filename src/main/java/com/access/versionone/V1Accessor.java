@@ -24,8 +24,8 @@ public class V1Accessor {
     }
 
     public static String extractStoryActivity(Map<String, String> properties) throws IOException, InterruptedException {
-        ActivityFetcher activityFetcher = new ActivityFetcher(new HttpClientWrapper(),
-                properties.get("v1.url"), properties.get("v1.token"));
+        ActivityFetcher activityFetcher = new ActivityFetcher(new HttpClientWrapper(properties.get("v1.token")),
+                properties.get("v1.url"));
 
         Map<String, String> teamOidToTeamName = activityFetcher.getTeamsToProcess(
                 properties.get("v1.planningLevel"),

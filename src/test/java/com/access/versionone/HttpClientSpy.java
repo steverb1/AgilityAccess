@@ -1,5 +1,9 @@
 package com.access.versionone;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.net.ssl.SSLSession;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -35,5 +39,15 @@ public class HttpClientSpy implements ForHttpClientCalls {
             @Override public HttpClient.Version version() {return null;}
             @Override public HttpHeaders headers() {return null;}
         };
+    }
+
+    public JsonNode sendHttpRequest(String urlString) throws JsonProcessingException {
+        lastRequest = HttpRequest.newBuilder()
+                .uri(URI.create(urlString))
+                .header("Accept", "application/json")
+                .header("Authorization", "Bearer exampleAccessToken").build();
+        HttpResponse<String> response = send(lastRequest, HttpResponse.BodyHandlers.ofString());
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readTree(response.body());
     }
 }

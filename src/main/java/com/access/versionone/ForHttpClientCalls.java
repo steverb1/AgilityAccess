@@ -1,5 +1,7 @@
 package com.access.versionone;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import java.io.IOException;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -8,4 +10,6 @@ public interface ForHttpClientCalls {
     <T> HttpResponse<T>
     send(HttpRequest request, HttpResponse.BodyHandler<T> responseBodyHandler)
             throws IOException, InterruptedException;
+
+    JsonNode sendHttpRequest(String urlString) throws IOException, InterruptedException;
 }

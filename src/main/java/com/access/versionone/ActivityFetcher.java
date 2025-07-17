@@ -1,25 +1,19 @@
 package com.access.versionone;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.util.*;
 
 public class ActivityFetcher {
 
     private final ForHttpClientCalls httpClient;
-    private final String accessToken;
     String baseUrl;
 
-    ActivityFetcher(ForHttpClientCalls httpClient, String baseUrl1, String accessToken) {
+    ActivityFetcher(ForHttpClientCalls httpClient, String baseUrl1) {
         this.httpClient = httpClient;
         this.baseUrl = baseUrl1;
-        this.accessToken = accessToken;
     }
 
     public Map<String, String> getTeamsToProcess(String scopeOid, String teamOid) throws IOException, InterruptedException {
@@ -74,7 +68,7 @@ public class ActivityFetcher {
     JsonNode getActivity(String workItemId) throws IOException, InterruptedException {
         String urlString = baseUrl + "/api/ActivityStream/" + workItemId;
 
-        return sendHttpRequest(urlString);
+        return httpClient.sendHttpRequest(urlString);
     }
 
     List<String> getStoriesForTeam(String teamOid, String fromClosedDate) throws IOException, InterruptedException {
@@ -88,7 +82,7 @@ public class ActivityFetcher {
 
         String urlString = String.format("%s/rest-1.v1/Data/Story?sel=ID&%s", baseUrl, whereClause);
 
-        JsonNode root = sendHttpRequest(urlString);
+        JsonNode root = httpClient.sendHttpRequest(urlString);
 
         JsonNode assets = root.get("Assets");
 
@@ -104,7 +98,7 @@ public class ActivityFetcher {
     String getTeamName(String teamOidString) throws IOException, InterruptedException {
         String urlString = String.format("%s/rest-1.v1/Data/Team?where=ID='%s'&sel=Name", baseUrl, teamOidString);
 
-        JsonNode root = sendHttpRequest(urlString);
+        JsonNode root = httpClient.sendHttpRequest(urlString);
         JsonNode assets = root.get("Assets");
         if (assets != null && !assets.isEmpty()) {
             return assets.get(0).get("Attributes").get("Name").get("value").asText();
@@ -115,7 +109,7 @@ public class ActivityFetcher {
     private Map<String, String> getTeamsForScope(String scope) throws IOException, InterruptedException {
         String urlString = String.format("%s/rest-1.v1/Data/Team?where=Scope.ID='%s'&sel=Name", baseUrl, scope);
 
-        JsonNode root = sendHttpRequest(urlString);
+        JsonNode root = httpClient.sendHttpRequest(urlString);
         JsonNode teams = root.get("Assets");
 
         Map<String, String> teamOidToTeamName = new HashMap<>();
@@ -128,20 +122,5 @@ public class ActivityFetcher {
         }
 
         return teamOidToTeamName;
-    }
-
-    private JsonNode sendHttpRequest(String fullUrl) throws IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(fullUrl))
-                .header("Authorization", "Bearer " + accessToken)
-                .header("Accept", "application/json")
-                .GET()
-                .build();
-
-        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        return mapper.readTree(response.body());
     }
 }
