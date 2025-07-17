@@ -1,31 +1,25 @@
 package com.access.versionone;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlannedFetcher {
-    private final ForHttpClientCalls httpClient;
-    private final String accessToken;
+    private final ClientDecorator httpClient;
     String baseUrl;
 
-    PlannedFetcher(ForHttpClientCalls httpClient, String baseUrl1, String accessToken) {
+    PlannedFetcher(ClientDecorator httpClient, String baseUrl1) {
         this.httpClient = httpClient;
         this.baseUrl = baseUrl1;
-        this.accessToken = accessToken;
     }
 
     public List<String> getPlannedStories(String timeboxOid) throws IOException, InterruptedException {
         String iterationActivationDate = getIterationActivationDate(timeboxOid);
         String urlString = String.format("%s/rest-1.v1/Data/PrimaryWorkitem?where=Timebox='%s'&asof=%s&sel=Name,ID",
                 baseUrl, timeboxOid, iterationActivationDate);
-        JsonNode root = sendHttpRequest(urlString);
+        JsonNode root = httpClient.sendHttpRequest(urlString);
         JsonNode assets = root.get("Assets");
         List<String> stories = new ArrayList<>();
         if (assets != null && assets.isArray()) {
@@ -57,7 +51,7 @@ public class PlannedFetcher {
         String encodedWhere = java.net.URLEncoder.encode(whereClause, java.nio.charset.StandardCharsets.UTF_8);
         String urlString = String.format("%s/rest-1.v1/Data/Timebox?where=%s&sel=Name", baseUrl, encodedWhere);
 
-        JsonNode root = sendHttpRequest(urlString);
+        JsonNode root = httpClient.sendHttpRequest(urlString);
         JsonNode assets = root.get("Assets");
 
         ArrayList<Iteration> iterations = new ArrayList<>();
@@ -78,7 +72,7 @@ public class PlannedFetcher {
 
     String getIterationActivationDate(String timeboxOid) throws IOException, InterruptedException {
         String urlString = String.format("%s/rest-1.v1/Hist/Timebox?where=ID='%s';State.Code='ACTV'&sel=ChangeDate,State", baseUrl, timeboxOid);
-        JsonNode root = sendHttpRequest(urlString);
+        JsonNode root = httpClient.sendHttpRequest(urlString);
         JsonNode assets = root.get("Assets");
         for (JsonNode asset : assets) {
             JsonNode attributes = asset.get("Attributes");
@@ -86,21 +80,4 @@ public class PlannedFetcher {
         }
         return "";
     }
-
-    private JsonNode sendHttpRequest(String fullUrl) throws IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(fullUrl))
-                .header("Authorization", "Bearer " + accessToken)
-                .header("Accept", "application/json")
-                .GET()
-                .build();
-
-        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        return mapper.readTree(response.body());
-    }
 }
-
-

@@ -9,7 +9,7 @@ public class PlannedFetcherTest {
     String baseUrl = "https://example.com";
     String accessToken = "exampleAccessToken";
     HttpClientSpy httpClient = new HttpClientSpy();
-    PlannedFetcher plannedFetcher = new PlannedFetcher(httpClient, baseUrl, accessToken);
+    PlannedFetcher plannedFetcher = new PlannedFetcher(new ClientDecorator(httpClient, accessToken), baseUrl);
 
     @Test
     void returnsPlannedStories() throws IOException, InterruptedException {

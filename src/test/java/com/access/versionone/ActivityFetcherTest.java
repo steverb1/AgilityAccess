@@ -14,7 +14,7 @@ public class ActivityFetcherTest {
     String baseUrl = "https://example.com";
     String accessToken = "exampleAccessToken";
     private final HttpClientSpy httpClient = new HttpClientSpy();
-    private final ActivityFetcher activityFetcher = new ActivityFetcher(httpClient, baseUrl, accessToken);
+    private final ActivityFetcher activityFetcher = new ActivityFetcher(new ClientDecorator(httpClient, accessToken), baseUrl);
 
     @Test
     void getActivity() throws IOException, InterruptedException {
