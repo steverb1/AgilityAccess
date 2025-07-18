@@ -1,4 +1,4 @@
-You'll need a config.properties file, that will look like:
+You'll need a config.properties file, that will look like (8 entries):
 
 v1.token=<insert V1 token>
 v1.url=<insert V1 url>
