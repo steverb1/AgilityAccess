@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlannedFetcher {
-    private final ClientDecorator httpClient;
+    private final HttpClientWrapper httpClient;
     String baseUrl;
 
-    PlannedFetcher(ClientDecorator httpClient, String baseUrl1) {
+    PlannedFetcher(HttpClientWrapper httpClient, String baseUrl1) {
         this.httpClient = httpClient;
         this.baseUrl = baseUrl1;
     }

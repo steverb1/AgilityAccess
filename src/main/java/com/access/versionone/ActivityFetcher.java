@@ -7,10 +7,10 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class ActivityFetcher {
-    private final ClientDecorator httpClient;
+    private final HttpClientWrapper httpClient;
     String baseUrl;
 
-    ActivityFetcher(ClientDecorator httpClient, String baseUrl1) {
+    ActivityFetcher(HttpClientWrapper httpClient, String baseUrl1) {
         this.httpClient = httpClient;
         this.baseUrl = baseUrl1;
     }

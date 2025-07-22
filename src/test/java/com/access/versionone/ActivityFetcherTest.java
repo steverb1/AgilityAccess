@@ -13,8 +13,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ActivityFetcherTest {
     String baseUrl = "https://example.com";
     String accessToken = "exampleAccessToken";
-    private final HttpClientSpy httpClient = new HttpClientSpy();
-    private final ActivityFetcher activityFetcher = new ActivityFetcher(new ClientDecorator(httpClient, accessToken), baseUrl);
+    HttpClientSpy httpClient = new HttpClientSpy();
+    HttpClientWrapper httpClientWrapper = new HttpClientWrapper(accessToken, httpClient);
+    ActivityFetcher activityFetcher = new ActivityFetcher(httpClientWrapper, baseUrl);
 
     @Test
     void getActivity() throws IOException, InterruptedException {

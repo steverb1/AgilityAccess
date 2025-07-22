@@ -3,13 +3,15 @@ package com.access.versionone;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlannedFetcherTest {
     String baseUrl = "https://example.com";
     String accessToken = "exampleAccessToken";
     HttpClientSpy httpClient = new HttpClientSpy();
-    PlannedFetcher plannedFetcher = new PlannedFetcher(new ClientDecorator(httpClient, accessToken), baseUrl);
+    HttpClientWrapper clientWrapper = new HttpClientWrapper(accessToken, httpClient);
+    PlannedFetcher plannedFetcher = new PlannedFetcher(clientWrapper, baseUrl);
 
     @Test
     void returnsPlannedStories() throws IOException, InterruptedException {
