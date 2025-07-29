@@ -47,7 +47,7 @@ public class ActivityFetcherTest {
                 """;
         httpClient.addBody(body);
 
-        List<String> storyIds = activityFetcher.getStoriesForTeam(teamOid, fromClosedDate);
+        List<String> storyIds = activityFetcher.getStoriesForTeam(WorkItemType.Story, teamOid, fromClosedDate);
 
         assertThat(storyIds.size()).isEqualTo(1);
         assertThat(httpClient.lastRequest.uri().toString()).isEqualTo("https://example.com/rest-1.v1/Data/Story?sel=ID&where=ClosedDate%3E'2025-05-01T00:00:00Z';Team='Team:123'");
@@ -69,7 +69,7 @@ public class ActivityFetcherTest {
                 """;
         httpClient.addBody(body);
 
-        List<String> storyIds = activityFetcher.getStoriesForTeam(teamOid, fromClosedDate);
+        List<String> storyIds = activityFetcher.getStoriesForTeam(WorkItemType.Story, teamOid, fromClosedDate);
 
         assertThat(storyIds.size()).isEqualTo(1);
         assertThat(httpClient.lastRequest.uri().toString()).isEqualTo("https://example.com/rest-1.v1/Data/Story?sel=ID&where=Team='Team:123'");

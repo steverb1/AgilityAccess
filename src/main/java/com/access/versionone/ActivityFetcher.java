@@ -38,7 +38,7 @@ public class ActivityFetcher {
         List<StoryHistory> histories = new ArrayList<>();
 
         for (String teamOid : teamOidToTeamName.keySet()) {
-            List<String> storyIds = getStoriesForTeam(teamOid, fromClosedDate);
+            List<String> storyIds = getStoriesForTeam(WorkItemType.Story, teamOid, fromClosedDate);
 
             Float storyPoints = null;
             String teamName = "";
@@ -70,7 +70,7 @@ public class ActivityFetcher {
         return httpClient.sendHttpRequest(urlString);
     }
 
-    List<String> getStoriesForTeam(String teamOid, String fromClosedDate) throws IOException, InterruptedException {
+    List<String> getStoriesForTeam(WorkItemType workItemType, String teamOid, String fromClosedDate) throws IOException, InterruptedException {
         String whereClause = "where=";
 
         if (!fromClosedDate.isEmpty()) {
@@ -79,7 +79,7 @@ public class ActivityFetcher {
         }
         whereClause += "Team='" + teamOid + "'";
 
-        String urlString = String.format("%s/rest-1.v1/Data/Story?sel=ID&%s", baseUrl, whereClause);
+        String urlString = String.format("%s/rest-1.v1/Data/%s?sel=ID&%s", baseUrl, workItemType, whereClause);
 
         JsonNode root = httpClient.sendHttpRequest(urlString);
 

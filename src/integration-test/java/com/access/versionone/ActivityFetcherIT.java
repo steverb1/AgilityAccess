@@ -38,7 +38,7 @@ public class ActivityFetcherIT {
     @Test
     void getStoriesForTeam_NoClosedDate() throws IOException, InterruptedException {
         String teamOid = "Team:1889";
-        List<String> storyIds = activityFetcher.getStoriesForTeam(teamOid, "");
+        List<String> storyIds = activityFetcher.getStoriesForTeam(WorkItemType.Story, teamOid, "");
 
         assertThat(storyIds).isNotEmpty();
     }
