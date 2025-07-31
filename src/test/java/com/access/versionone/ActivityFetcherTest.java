@@ -47,7 +47,7 @@ public class ActivityFetcherTest {
                 """;
         httpClient.addBody(body);
 
-        List<String> storyIds = activityFetcher.getStoriesForTeam(WorkItemType.Story, teamOid, fromClosedDate);
+        List<String> storyIds = activityFetcher.getWorkItemsForTeam("Story", teamOid, fromClosedDate);
 
         assertThat(storyIds.size()).isEqualTo(1);
         assertThat(httpClient.lastRequest.uri().toString()).isEqualTo("https://example.com/rest-1.v1/Data/Story?sel=ID&where=ClosedDate%3E'2025-05-01T00:00:00Z';Team='Team:123'");
@@ -69,7 +69,7 @@ public class ActivityFetcherTest {
                 """;
         httpClient.addBody(body);
 
-        List<String> storyIds = activityFetcher.getStoriesForTeam(WorkItemType.Story, teamOid, fromClosedDate);
+        List<String> storyIds = activityFetcher.getWorkItemsForTeam("Story", teamOid, fromClosedDate);
 
         assertThat(storyIds.size()).isEqualTo(1);
         assertThat(httpClient.lastRequest.uri().toString()).isEqualTo("https://example.com/rest-1.v1/Data/Story?sel=ID&where=Team='Team:123'");
@@ -261,7 +261,7 @@ public class ActivityFetcherTest {
         );
 
         List<StoryHistory> storyHistories = activityFetcher.getStoryHistories(teamOidToTeamName, true, true,
-                "2025-01-01", "Ready for Build, Build, Done");
+                "2025-01-01", "Ready for Build, Build, Done", "Story");
 
         assertThat(storyHistories.size()).isEqualTo(2);
 
@@ -275,5 +275,49 @@ public class ActivityFetcherTest {
         assertThat(storyHistory1.teamName()).isEqualTo("Team Bob");
 
         assertThat(storyHistories.get(1).storyPoints()).isEqualTo(5.0f);
+    }
+
+    @Test
+    void getEpicsForTeam() throws IOException, InterruptedException {
+        String teamOid = "Team:123";
+        String fromClosedDate = "2025-05-01";
+
+        String body = """
+                {
+                  "Assets": [
+                    {
+                      "id": "Epic:1234"
+                    }
+                  ]
+                }
+                """;
+        httpClient.addBody(body);
+
+        List<String> featureIds = activityFetcher.getWorkItemsForTeam("Epic", teamOid, fromClosedDate);
+
+        assertThat(featureIds.size()).isEqualTo(1);
+        assertThat(httpClient.lastRequest.uri().toString()).isEqualTo("https://example.com/rest-1.v1/Data/Epic?sel=ID&where=ClosedDate%3E'2025-05-01T00:00:00Z';Team='Team:123'");
+    }
+
+    @Test
+    void getEpicsForTeam_NoClosedDate() throws IOException, InterruptedException {
+        String teamOid = "Team:123";
+        String fromClosedDate = "";
+
+        String body = """
+                {
+                  "Assets": [
+                    {
+                      "id": "Epic:1234"
+                    }
+                  ]
+                }
+                """;
+        httpClient.addBody(body);
+
+        List<String> featureIds = activityFetcher.getWorkItemsForTeam("Epic", teamOid, fromClosedDate);
+
+        assertThat(featureIds.size()).isEqualTo(1);
+        assertThat(httpClient.lastRequest.uri().toString()).isEqualTo("https://example.com/rest-1.v1/Data/Epic?sel=ID&where=Team='Team:123'");
     }
 }

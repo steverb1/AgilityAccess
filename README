@@ -4,6 +4,7 @@ v1.token=<insert V1 token>
 v1.url=<insert V1 url>
 v1.planningLevel=<insert ID>  (as in "Scope:#####").  This is used to find the set of teams to get stories for.
 v1.team=<insert team name>  ("Team:#####", optional, if you want to limit to a single team, only used if planningLevel is blank)
+workItemType=<Story or Epic>
 fromClosedDate=2025-01-01  (will find stories closed after this date)
 states=Ready for Build, Build, Done (states you want captured)
 includeStoryPoints=<false or true>  Whether to include story points in the output.

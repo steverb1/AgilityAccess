@@ -35,7 +35,8 @@ public class V1Accessor {
                 properties.get("includeStoryPoints").equals("true"),
                 properties.get("includeTeamName").equals("true"),
                 properties.get("fromClosedDate"),
-                properties.get("states"));
+                properties.get("states"),
+                properties.get("workItemType"));
 
         return new OutputGenerator().createCsvContent(histories,
                 properties.get("includeStoryPoints").equals("true"),

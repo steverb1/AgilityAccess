@@ -22,7 +22,8 @@ public class ActivityFetcherIT {
         Map<String, String> teamsToProcess = activityFetcher.getTeamsToProcess("Scope:1005", null);
         assertThat(teamsToProcess).isNotEmpty();
 
-        List<StoryHistory> storyHistories = activityFetcher.getStoryHistories(teamsToProcess, true, true, PropertyFetcher.getProperty("fromClosedDate"), PropertyFetcher.getProperty("states"));
+        List<StoryHistory> storyHistories = activityFetcher.getStoryHistories(teamsToProcess, true, true,
+                PropertyFetcher.getProperty("fromClosedDate"), PropertyFetcher.getProperty("states"), PropertyFetcher.getProperty("workItemType"));
         assertThat(storyHistories).isNotEmpty();
     }
 
@@ -31,14 +32,23 @@ public class ActivityFetcherIT {
         Map<String, String> teamsToProcess = activityFetcher.getTeamsToProcess(null, "Team:1889");
         assertThat(teamsToProcess).isNotEmpty();
 
-        List<StoryHistory> storyHistories = activityFetcher.getStoryHistories(teamsToProcess, true, true, PropertyFetcher.getProperty("fromClosedDate"), PropertyFetcher.getProperty("states"));
+        List<StoryHistory> storyHistories = activityFetcher.getStoryHistories(teamsToProcess, true, true,
+                PropertyFetcher.getProperty("fromClosedDate"), PropertyFetcher.getProperty("states"), PropertyFetcher.getProperty("workItemType"));
         assertThat(storyHistories).isNotEmpty();
     }
 
     @Test
     void getStoriesForTeam_NoClosedDate() throws IOException, InterruptedException {
         String teamOid = "Team:1889";
-        List<String> storyIds = activityFetcher.getStoriesForTeam(WorkItemType.Story, teamOid, "");
+        List<String> storyIds = activityFetcher.getWorkItemsForTeam("Story", teamOid, "");
+
+        assertThat(storyIds).isNotEmpty();
+    }
+
+    @Test
+    void getEpicsForTeam_NoClosedDate() throws IOException, InterruptedException {
+        String teamOid = "Team:1889";
+        List<String> storyIds = activityFetcher.getWorkItemsForTeam("Epic", teamOid, "");
 
         assertThat(storyIds).isNotEmpty();
     }

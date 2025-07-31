@@ -34,11 +34,12 @@ public class ActivityFetcher {
     }
 
     public List<StoryHistory> getStoryHistories(Map<String, String> teamOidToTeamName,
-                                                boolean includeStoryPoints, boolean includeTeamName, String fromClosedDate, String configuredStates) throws IOException, InterruptedException {
+                                                boolean includeStoryPoints, boolean includeTeamName, String fromClosedDate,
+                                                String configuredStates, String workItemType) throws IOException, InterruptedException {
         List<StoryHistory> histories = new ArrayList<>();
 
         for (String teamOid : teamOidToTeamName.keySet()) {
-            List<String> storyIds = getStoriesForTeam(WorkItemType.Story, teamOid, fromClosedDate);
+            List<String> storyIds = getWorkItemsForTeam(workItemType, teamOid, fromClosedDate);
 
             Float storyPoints = null;
             String teamName = "";
@@ -70,7 +71,7 @@ public class ActivityFetcher {
         return httpClient.sendHttpRequest(urlString);
     }
 
-    List<String> getStoriesForTeam(WorkItemType workItemType, String teamOid, String fromClosedDate) throws IOException, InterruptedException {
+    List<String> getWorkItemsForTeam(String workItemType, String teamOid, String fromClosedDate) throws IOException, InterruptedException {
         String whereClause = "where=";
 
         if (!fromClosedDate.isEmpty()) {
